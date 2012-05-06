@@ -1,0 +1,88 @@
+/**
+ *
+ * andruil - Java command line shell
+ * Copyright (c) 2012, Sandeep Gupta
+ * 
+ * http://www.sangupta/projects/andruil
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * 		http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ */
+
+package com.sangupta.andruil;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.sangupta.andruil.command.HelpListCommand;
+import com.sangupta.andruil.command.ClearScreenCommand;
+import com.sangupta.andruil.command.CreateDirectoryCommand;
+import com.sangupta.andruil.command.QuitShellCommand;
+import com.sangupta.andruil.command.RemoveDirectoryCommand;
+import com.sangupta.andruil.command.TypeCommand;
+import com.sangupta.andruil.command.VersionCommand;
+import com.sangupta.andruil.command.WhoAmICommand;
+
+public class CommandExecutor {
+	
+	private static Map<String, Command> commandMap = new HashMap<String, Command>();
+	
+	private static Command[] commands = {
+		new ClearScreenCommand(),
+		new QuitShellCommand(),
+		new WhoAmICommand(),
+		new VersionCommand(),
+		new HelpListCommand(),
+		new TypeCommand(),
+		new CreateDirectoryCommand(),
+		new RemoveDirectoryCommand()
+	};
+	
+	static {
+		// start building the command map
+		for(Command command : commands) {
+			commandMap.put(command.getCommandName(), command);
+
+			// for alias
+			String[] alias = command.getCommandAlias();
+			if(alias != null) {
+				for(String name : alias) {
+					commandMap.put(name, command);
+				}
+			}
+		}
+	}
+
+	public static Command[] getCommands() {
+		return commands;
+	}
+
+	public static boolean isExecutableCommand(String command) {
+		if(commandMap.containsKey(command)) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public static void executeCommand(String commandName, String arguments) {
+		Command command = commandMap.get(commandName);
+		if(arguments == null) {
+			arguments = "";
+		}
+
+		String[] args = arguments.split(" ");
+		command.run(args);
+	}
+
+}
