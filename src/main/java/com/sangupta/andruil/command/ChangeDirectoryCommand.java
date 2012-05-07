@@ -61,7 +61,7 @@ public class ChangeDirectoryCommand extends AbstractCommand {
 		}
 		
 		if(dir == null) {
-			dir = new File(getCurrentWorkingDirectory(), dirName);
+			dir = resolveFile(dirName);
 		}
 		
 		if(!dir.exists()) {

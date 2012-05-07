@@ -64,7 +64,7 @@ public class RemoveDirectoryCommand extends AbstractCommand {
 		}
 		
 		String dirName = args[0];
-		File file = new File(dirName);
+		File file = resolveFile(dirName);
 		
 		if(!file.exists()) {
 			System.out.println("The system cannot find the file specified.");

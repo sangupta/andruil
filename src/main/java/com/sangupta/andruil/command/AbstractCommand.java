@@ -82,6 +82,10 @@ public abstract class AbstractCommand implements Command {
 		return Andruil.getCurrentDirectory().getAbsolutePath();
 	}
 	
+	public File resolveFile(String dirName) {
+		return new File(getCurrentWorkingDirectory(), dirName);
+	}
+	
 	/**
 	 * 
 	 * @param args

@@ -51,7 +51,8 @@ public class TypeCommand extends AbstractCommand {
 			return;
 		}
 		
-		File file = new File(args[0]);
+		String dirName = args[0];
+		File file = resolveFile(dirName);
 		if(!file.exists()) {
 			getOut().println("The system cannot find the file specified.");
 			return;

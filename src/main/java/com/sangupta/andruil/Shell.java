@@ -21,8 +21,11 @@
 
 package com.sangupta.andruil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sangupta.andruil.utils.OSUtils;
 
 import jline.console.ConsoleReader;
 import jline.console.completer.Completer;
@@ -104,13 +107,25 @@ public class Shell {
         			t.printStackTrace();
         		}
         	} else {
-        		out.print("'");
-        		out.print(command);
-        		out.print("' is not recognized as an internal command.");
+        		boolean recognized = false;
+
+        		// check for drive change on windows
+        		if(OSUtils.isWindows()) {
+        			if(command.length() == 2 && command.endsWith(":")) {
+        				recognized = true;
+        				Andruil.changeCurrentDirectory(new File(command));
+        			}
+        		}
+        		
+        		if(!recognized) {
+	        		out.print("'");
+	        		out.print(command);
+	        		out.print("' is not recognized as an internal command.");
+	        		out.println("");
+        		}
         	}
         	
         	out.flush();
-        	out.println("");
         	out.println("");
         	out.flush();
         	

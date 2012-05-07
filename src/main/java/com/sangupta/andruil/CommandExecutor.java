@@ -30,6 +30,7 @@ import com.sangupta.andruil.command.FileCompareCommand;
 import com.sangupta.andruil.command.HelpListCommand;
 import com.sangupta.andruil.command.ClearScreenCommand;
 import com.sangupta.andruil.command.CreateDirectoryCommand;
+import com.sangupta.andruil.command.ListDirFilesCommand;
 import com.sangupta.andruil.command.MD5Command;
 import com.sangupta.andruil.command.QuitShellCommand;
 import com.sangupta.andruil.command.RemoveDirectoryCommand;
@@ -57,7 +58,8 @@ public class CommandExecutor {
 		new FileCompareCommand(),
 		new TailCommand(),
 		new ChangeDirectoryCommand(),
-		new DateCommand()
+		new DateCommand(),
+		new ListDirFilesCommand()
 	};
 	
 	static {

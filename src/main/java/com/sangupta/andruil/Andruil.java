@@ -59,9 +59,9 @@ public class Andruil {
 		
 		String prompt;
 		if(file.isDirectory()) {
-			prompt = file.getAbsolutePath() + "$";
+			prompt = file.getAbsolutePath() + " $ ";
 		} else {
-			prompt = file.getParentFile().getAbsolutePath() + "$";
+			prompt = file.getParentFile().getAbsolutePath() + " $ ";
 		}
 		
 		Shell.setPrompt(prompt);

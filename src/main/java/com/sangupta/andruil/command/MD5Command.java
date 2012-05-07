@@ -44,7 +44,7 @@ public class MD5Command extends AbstractCommand {
 			return;
 		}
 		
-		File file = new File(args[0]);
+		File file = resolveFile(args[0]);
 		if(!file.exists()) {
 			getOut().println("The system cannot find the file specified.");
 			return;
