@@ -24,6 +24,8 @@ package com.sangupta.andruil;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sangupta.andruil.command.ChangeDirectoryCommand;
+import com.sangupta.andruil.command.DateCommand;
 import com.sangupta.andruil.command.FileCompareCommand;
 import com.sangupta.andruil.command.HelpListCommand;
 import com.sangupta.andruil.command.ClearScreenCommand;
@@ -53,7 +55,9 @@ public class CommandExecutor {
 		new RemoveDirectoryCommand(),
 		new MD5Command(),
 		new FileCompareCommand(),
-		new TailCommand()
+		new TailCommand(),
+		new ChangeDirectoryCommand(),
+		new DateCommand()
 	};
 	
 	static {
@@ -85,11 +89,14 @@ public class CommandExecutor {
 
 	public static void executeCommand(String commandName, String arguments) {
 		Command command = commandMap.get(commandName);
+
+		String[] args;
 		if(arguments == null) {
-			arguments = "";
+			args = new String[0];
+		} else {
+			args = arguments.split(" ");
 		}
 
-		String[] args = arguments.split(" ");
 		command.run(args);
 	}
 

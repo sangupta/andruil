@@ -55,8 +55,8 @@ public class Shell {
 		reader.setPrompt(prompt);
     }
     
-    public static void addCompleter(Completer completer) {
-		reader.addCompleter(completer);
+    public static boolean addCompleter(Completer completer) {
+		return reader.addCompleter(completer);
     }
     
     public static void setMast(Character mask) {
@@ -65,6 +65,10 @@ public class Shell {
     
     public static void setPasswordMode(boolean passwordMode) {
     	Shell.passwordMode = passwordMode;
+    }
+    
+    public static PrintWriter getOutStream() {
+    	return out;
     }
     
     public static void clearScreen() {
@@ -103,9 +107,9 @@ public class Shell {
         		out.print("'");
         		out.print(command);
         		out.print("' is not recognized as an internal command.");
-        		out.flush();
         	}
         	
+        	out.flush();
         	out.println("");
         	out.println("");
         	out.flush();

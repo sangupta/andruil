@@ -21,21 +21,36 @@
 
 package com.sangupta.andruil.command;
 
-public class FileCompareCommand extends AbstractCommand {
+import java.util.Date;
 
+/**
+ * @author sangupta
+ *
+ */
+public class DateCommand extends AbstractCommand {
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
 	public String getCommandName() {
-		return "fc";
+		return "date";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Compares two files and displays the differences between them";
+		return "Display the current system date";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-
+		getOut().println(new Date().toLocaleString());
 	}
 
 }

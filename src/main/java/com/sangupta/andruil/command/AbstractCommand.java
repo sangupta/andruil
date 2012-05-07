@@ -21,7 +21,12 @@
 
 package com.sangupta.andruil.command;
 
+import java.io.File;
+import java.io.PrintWriter;
+
+import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.Command;
+import com.sangupta.andruil.Shell;
 
 /**
  * @author sangupta
@@ -67,6 +72,14 @@ public abstract class AbstractCommand implements Command {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public PrintWriter getOut() {
+		return Shell.getOutStream();
+	}
+	
+	public String getCurrentWorkingDirectory() {
+		return Andruil.getCurrentDirectory().getAbsolutePath();
 	}
 	
 	/**

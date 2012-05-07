@@ -25,17 +25,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import jline.console.completer.FileNameCompleter;
 import jline.console.completer.StringsCompleter;
+
+import com.sangupta.andruil.completer.ExtendedFileNameCompleter;
 
 public class Andruil {
 	
+	private static File currentWorkingDirectory = new File(".").getAbsoluteFile().getParentFile();
+	
 	public static void main(String[] args) throws Exception {
 		// prepare the shell
-		Shell.setPrompt(createPromptText(getCurrentDirectory()));
+		updatePromptText();
 		
 		// add the filename completer
-		Shell.addCompleter(new FileNameCompleter());
+		Shell.addCompleter(new ExtendedFileNameCompleter());
 		
 		// build up the list of commands
 		List<String> commandNames = new ArrayList<String>();
@@ -48,21 +51,31 @@ public class Andruil {
 		Shell.run();
 	}
 	
-	private static String createPromptText(File file) {
+	private static void updatePromptText() {
+		File file = getCurrentDirectory();
 		if(file == null) {
-			return null; 
+			return; 
 		}
 		
+		String prompt;
 		if(file.isDirectory()) {
-			return file.getAbsolutePath() + ">";
+			prompt = file.getAbsolutePath() + "$";
+		} else {
+			prompt = file.getParentFile().getAbsolutePath() + "$";
 		}
 		
-		return file.getParentFile().getAbsolutePath() + ">";
+		Shell.setPrompt(prompt);
 	}
 
 	public static File getCurrentDirectory() {
-		File file = new File(".").getAbsoluteFile().getParentFile();
-		return file;
+		return currentWorkingDirectory;
+	}
+	
+	public static void changeCurrentDirectory(File file) {
+		if(file != null && file.exists() && file.isDirectory()) {
+			currentWorkingDirectory = file;
+			updatePromptText();
+		}
 	}
 
 }
