@@ -1,7 +1,10 @@
 Andruil
 =======
 
-Andruil is a JAVA based command line shell. The project is still under development is not tested. If
+Andruil is a JAVA based command line shell. Tired of the totally feature-lacking Windows command shell, 
+Andruil aims to be the powerful shell for developers, geeks and power-users.
+
+The project is still under development is not tested. If
 you wish to contribute to the project, view the CONTRIBUTING file in the root of the repository.
 
 Versioning
