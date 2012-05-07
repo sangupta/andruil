@@ -24,11 +24,14 @@ package com.sangupta.andruil;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sangupta.andruil.command.FileCompareCommand;
 import com.sangupta.andruil.command.HelpListCommand;
 import com.sangupta.andruil.command.ClearScreenCommand;
 import com.sangupta.andruil.command.CreateDirectoryCommand;
+import com.sangupta.andruil.command.MD5Command;
 import com.sangupta.andruil.command.QuitShellCommand;
 import com.sangupta.andruil.command.RemoveDirectoryCommand;
+import com.sangupta.andruil.command.TailCommand;
 import com.sangupta.andruil.command.TypeCommand;
 import com.sangupta.andruil.command.VersionCommand;
 import com.sangupta.andruil.command.WhoAmICommand;
@@ -37,6 +40,8 @@ public class CommandExecutor {
 	
 	private static Map<String, Command> commandMap = new HashMap<String, Command>();
 	
+	// TODO: this should be changed to read all commands from the com.sangupta.andruil.command
+	// package via reflection.
 	private static Command[] commands = {
 		new ClearScreenCommand(),
 		new QuitShellCommand(),
@@ -45,7 +50,10 @@ public class CommandExecutor {
 		new HelpListCommand(),
 		new TypeCommand(),
 		new CreateDirectoryCommand(),
-		new RemoveDirectoryCommand()
+		new RemoveDirectoryCommand(),
+		new MD5Command(),
+		new FileCompareCommand(),
+		new TailCommand()
 	};
 	
 	static {
