@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="release" name="Andruil">
+	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+	<!--ANT 1.7 is required                                        -->
+	<target name="release">
+		<delete file="./../andruil.jar" />
+		<jar destfile="./../andruil.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="com.sangupta.andruil.Andruil" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ jline-2.6.jar commons-io-2.1.jar" />
+			</manifest>
+			<zipfileset src="jar-in-jar-loader.zip" />
+			<fileset dir="C:/projects/git/andruil/target/classes" />
+			<zipfileset dir="C:\Users\sangupta\.m2\repository\jline\jline\2.6" includes="jline-2.6.jar" />
+			<zipfileset dir="C:\Users\sangupta\.m2\repository\commons-io\commons-io\2.1" includes="commons-io-2.1.jar" />
+		</jar>
+	</target>
+</project>

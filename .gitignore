@@ -28,7 +28,6 @@ docs/*
 desktop.ini
 
 # Project specific
-user.data
-resume.html
-libs/*.jar
+andruil.jar
 target/*
+build/*.zip
