@@ -29,8 +29,12 @@ public class VersionCommand extends AbstractCommand {
 	}
 
 	protected void execute(String[] args) {
-		System.out.println("");
-		System.out.println("Andruil Version 0.0.1");
+		println("");
+		println("Andruil - Java Command Shell");
+		println("by Sandeep Gupta - http://www.sangupta.com");
+		println("Version 0.0.1");
+		println("");
+		println("This program is in the public domain.");
 	}
 
 	@Override

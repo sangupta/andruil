@@ -21,6 +21,8 @@
 
 package com.sangupta.andruil;
 
+import java.io.PrintWriter;
+
 public interface Command {
 	
 	public String getCommandName();
@@ -32,5 +34,7 @@ public interface Command {
 	public void run(String[] args);
 	
 	public String getHelp();
+	
+	public void setOutputWriter(PrintWriter printWriter);
 
 }

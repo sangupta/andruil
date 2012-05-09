@@ -26,13 +26,14 @@ import java.io.PrintWriter;
 
 import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.Command;
-import com.sangupta.andruil.Shell;
 
 /**
  * @author sangupta
  *
  */
 public abstract class AbstractCommand implements Command {
+	
+	private PrintWriter out = null;
 
 	/**
 	 * @see com.sangupta.andruil.Command#getCommandName()
@@ -75,15 +76,25 @@ public abstract class AbstractCommand implements Command {
 	}
 	
 	public PrintWriter getOut() {
-		return Shell.getOutStream();
+		if(this.out == null) {
+			this.out = new PrintWriter(System.out);
+		}
+		
+		return this.out;
+	}
+	
+	public void setOutputWriter(PrintWriter pw) {
+		this.out = pw;
 	}
 	
 	public void print(String string) {
 		getOut().print(string);
+		getOut().flush();
 	}
 	
 	public void println(String string) {
 		getOut().println(string);
+		getOut().flush();
 	}
 	
 	public String getCurrentWorkingDirectory() {

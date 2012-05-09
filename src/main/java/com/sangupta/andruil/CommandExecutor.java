@@ -27,6 +27,7 @@ import java.util.Map;
 import com.sangupta.andruil.command.ChangeDirectoryCommand;
 import com.sangupta.andruil.command.DateCommand;
 import com.sangupta.andruil.command.FileCompareCommand;
+import com.sangupta.andruil.command.GarbageCollectionCommand;
 import com.sangupta.andruil.command.HelpListCommand;
 import com.sangupta.andruil.command.ClearScreenCommand;
 import com.sangupta.andruil.command.CreateDirectoryCommand;
@@ -59,7 +60,8 @@ public class CommandExecutor {
 		new TailCommand(),
 		new ChangeDirectoryCommand(),
 		new DateCommand(),
-		new ListDirFilesCommand()
+		new ListDirFilesCommand(),
+		new GarbageCollectionCommand()
 	};
 	
 	static {
@@ -99,6 +101,7 @@ public class CommandExecutor {
 			args = arguments.split(" ");
 		}
 
+		command.setOutputWriter(Shell.getOutStream());
 		command.run(args);
 	}
 
