@@ -78,6 +78,14 @@ public abstract class AbstractCommand implements Command {
 		return Shell.getOutStream();
 	}
 	
+	public void print(String string) {
+		getOut().print(string);
+	}
+	
+	public void println(String string) {
+		getOut().println(string);
+	}
+	
 	public String getCurrentWorkingDirectory() {
 		return Andruil.getCurrentDirectory().getAbsolutePath();
 	}

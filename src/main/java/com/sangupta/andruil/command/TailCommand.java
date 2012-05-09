@@ -21,6 +21,8 @@
 
 package com.sangupta.andruil.command;
 
+import java.io.File;
+
 public class TailCommand extends AbstractCommand {
 
 	@Override
@@ -30,12 +32,35 @@ public class TailCommand extends AbstractCommand {
 
 	@Override
 	public String getHelpLine() {
-		return null;
+		return "Displays the last part of the file";
 	}
 
 	@Override
 	protected void execute(String[] args) throws Exception {
+		if(args.length == 0) {
+			println("No file specified.");
+			return;
+		}
+		
+		File file = resolveFile(args[0]);
+		if(!file.exists()) {
+			println("File does not exists.");
+			return;
+		}
+		
+		if(file.isDirectory()) {
+			println("File is a directory.");
+			return;
+		}
+		
+		tail(file);
+	}
 
+	/**
+	 * @param file
+	 */
+	private void tail(File file) {
+		println("File tailed: " + file.getAbsolutePath());
 	}
 
 }
