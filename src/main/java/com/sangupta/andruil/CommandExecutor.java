@@ -39,6 +39,7 @@ import com.sangupta.andruil.command.TailCommand;
 import com.sangupta.andruil.command.TypeCommand;
 import com.sangupta.andruil.command.VersionCommand;
 import com.sangupta.andruil.command.WhoAmICommand;
+import com.sangupta.andruil.command.net.HostnameCommand;
 
 public class CommandExecutor {
 	
@@ -61,7 +62,8 @@ public class CommandExecutor {
 		new ChangeDirectoryCommand(),
 		new DateCommand(),
 		new ListDirFilesCommand(),
-		new GarbageCollectionCommand()
+		new GarbageCollectionCommand(),
+		new HostnameCommand()
 	};
 	
 	static {
