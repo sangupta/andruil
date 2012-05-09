@@ -43,7 +43,10 @@ public class Andruil {
 		// build up the list of commands
 		List<String> commandNames = new ArrayList<String>();
 		for(Command command : CommandExecutor.getCommands()) {
-			commandNames.add(command.getCommandName());
+			String name = command.getCommandName();
+			if(name != null && !name.trim().equals("")) {
+				commandNames.add(name);
+			}
 		}
 		Shell.addCompleter(new StringsCompleter(commandNames));
 		
