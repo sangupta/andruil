@@ -23,18 +23,63 @@ package com.sangupta.andruil;
 
 import java.io.PrintWriter;
 
+/**
+ * Contract for all implementation that need to serve as a command in the
+ * Andruil shell.
+ * 
+ * All in-built commands must implement this interface. This should provide
+ * the shell to start fast.
+ * 
+ * In future, we may add the capability to use annotations for building
+ * commands, but implementing an interface is easier to keep up with
+ * compatibility and adding newer features.
+ * 
+ * @author sangupta
+ * 
+ */
 public interface Command {
 	
+	/**
+	 * Get the unique command name
+	 * 
+	 * @return
+	 */
 	public String getCommandName();
 	
+	/**
+	 * Get the alias with which this command may be known as. This should be unique
+	 * in the list of all command names and their aliases.
+	 * 
+	 * @return
+	 */
 	public String[] getCommandAlias();
 	
+	/**
+	 * Get the single line help about this command.
+	 * 
+	 * @return
+	 */
 	public String getHelpLine();
 	
+	/**
+	 * Execute the command with the given arguments
+	 * 
+	 * @param args
+	 */
 	public void run(String[] args);
 	
+	/**
+	 * Return the help on this command.
+	 * 
+	 * @return
+	 */
 	public String getHelp();
 	
+	/**
+	 * Set the output writer for this command.
+	 * 
+	 * @param printWriter
+	 */
 	public void setOutputWriter(PrintWriter printWriter);
 
 }
