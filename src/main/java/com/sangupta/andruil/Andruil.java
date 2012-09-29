@@ -28,12 +28,44 @@ import java.util.List;
 import jline.console.completer.StringsCompleter;
 
 import com.sangupta.andruil.completer.ExtendedFileNameCompleter;
+import com.sangupta.andruil.utils.TimeKeeper;
 
+/**
+ * Main entry point for the shell.
+ * 
+ * @author sangupta
+ *
+ */
 public class Andruil {
+	
+	private TimeKeeper timeKeeper = new TimeKeeper("Andruil");
 	
 	private static File currentWorkingDirectory = new File(".").getAbsoluteFile().getParentFile();
 	
+	/**
+	 * Main entry point from Operating system.
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
+		// TODO: we need to read the command line arguments to this shell
+		// this may provide customization options etc.
+		
+		// start the shell
+		Andruil andruil = new Andruil();
+		andruil.startShell();
+		
+		// when we are done
+		// make an exit
+		System.out.print("\n\n");
+		System.out.println(andruil.timeKeeper);
+	}
+	
+	/**
+	 * Build and start the shell
+	 */
+	private void startShell() throws Exception {
 		// prepare the shell
 		updatePromptText();
 		
@@ -54,6 +86,10 @@ public class Andruil {
 		Shell.run();
 	}
 	
+	/**
+	 * Updates the prompt text to the current directory that the user is in.
+	 * 
+	 */
 	private static void updatePromptText() {
 		File file = getCurrentDirectory();
 		if(file == null) {
@@ -70,10 +106,20 @@ public class Andruil {
 		Shell.setPrompt(prompt);
 	}
 
+	/**
+	 * Get current working directory
+	 *  
+	 * @return
+	 */
 	public static File getCurrentDirectory() {
 		return currentWorkingDirectory;
 	}
-	
+
+	/**
+	 * Change current working directory for the user.
+	 * 
+	 * @param file
+	 */
 	public static void changeCurrentDirectory(File file) {
 		if(file != null && file.exists() && file.isDirectory()) {
 			currentWorkingDirectory = file;

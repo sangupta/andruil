@@ -22,18 +22,27 @@
 package com.sangupta.andruil.utils;
 
 /**
+ * A simple timekeeper that tracks the times of shell run, and
+ * individual tasks that are run inside the shell.
+ * 
  * @author sangupta
  *
  */
-public class OSUtils {
+public class TimeKeeper {
 	
-	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	private String name;
+	
+	private long instantiationTime = System.currentTimeMillis();
 
-	/**
-	 * @return
-	 */
-	public static boolean isWindows() {
-		return true;
+	public TimeKeeper(String name) {
+		this.name = name;
 	}
-
+	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.name + " started at " + instantiationTime;
+	}
 }
