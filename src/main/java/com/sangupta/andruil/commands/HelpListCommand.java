@@ -19,44 +19,41 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands;
 
-import java.io.File;
+import java.util.List;
 
-/**
- * @author sangupta
- *
- */
-public class VolumeCommand extends AbstractCommand {
+import com.sangupta.andruil.Command;
+import com.sangupta.andruil.CommandExecutor;
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
-	 */
+public class HelpListCommand extends AbstractCommand {
+
 	@Override
 	public String getCommandName() {
-		return "vol";
+		return "list";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
-	 */
 	@Override
-	public String getHelpLine() {
-		return "Displays the volume name";
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
-	@Override
-	protected void execute(String[] args) throws Exception {
-		File file = new File("c:").getAbsoluteFile();
-		println(file.getName());
-		println(file.getAbsolutePath());
+	protected void execute(String[] args) {
+		List<Command> commands = CommandExecutor.getCommands();
+		for(Command command : commands) {
+			String commandName = command.getCommandName();
+			String helpLine = command.getHelpLine();
+			
+			System.out.print(commandName);
+			System.out.print(": ");
+			System.out.println(helpLine);
+		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		new VolumeCommand().execute(null);
+	@Override
+	public String[] getCommandAlias() {
+		return null;
+	}
+
+	@Override
+	public String getHelpLine() {
+		return "Show list of available commands";
 	}
 
 }

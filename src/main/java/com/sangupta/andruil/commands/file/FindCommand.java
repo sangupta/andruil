@@ -19,22 +19,22 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.file;
 
-import java.io.File;
+import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
  * @author sangupta
  *
  */
-public class RemoveDirectoryCommand extends AbstractCommand {
+public class FindCommand extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "rd";
+		return "find";
 	}
 
 	/**
@@ -42,15 +42,7 @@ public class RemoveDirectoryCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Removes (deletes) a directory.";
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelp()
-	 */
-	@Override
-	public String getHelp() {
-		return null;
+		return "Searches for a text string in a file or files";
 	}
 
 	/**
@@ -58,28 +50,8 @@ public class RemoveDirectoryCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		if(args.length == 0) {
-			System.out.println("The syntax of the command is incorrect.");
-			return;
-		}
-		
-		String dirName = args[0];
-		File file = resolveFile(dirName);
-		
-		if(!file.exists()) {
-			System.out.println("The system cannot find the file specified.");
-			return;
-		}
-		
-		if(!file.isDirectory()) {
-			System.out.println("File is not a directory.");
-			return;
-		}
-		
-		boolean success = file.delete();
-		if(!success) {
-			System.out.println("Directory not empty.");
-		}
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -19,23 +19,47 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.folder;
 
-public class FileCompareCommand extends AbstractCommand {
+import java.io.File;
 
+import com.sangupta.andruil.commands.AbstractCommand;
+
+/**
+ * @author sangupta
+ *
+ */
+public class ListDirFilesCommand extends AbstractCommand {
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
 	public String getCommandName() {
-		return "fc";
+		return "ls";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Compares two files and displays the differences between them";
+		return "List files in the given folder.";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-
+		File curDir = new File(getCurrentWorkingDirectory());
+		String[] filesAndFolders = curDir.list();
+		
+		if(filesAndFolders != null && filesAndFolders.length > 0) {
+			for(String name : filesAndFolders) {
+				getOut().println(name);
+			}
+		}
 	}
 
 }

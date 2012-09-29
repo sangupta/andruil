@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands;
 
 import java.io.File;
 import java.io.PrintWriter;

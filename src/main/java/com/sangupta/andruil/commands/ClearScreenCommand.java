@@ -19,27 +19,29 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands;
 
+import com.sangupta.andruil.Shell;
 
-public class WhoAmICommand extends AbstractCommand {
-
+public class ClearScreenCommand extends AbstractCommand {
+	
 	public String getCommandName() {
-		return "whoami";
+		return "cls";
 	}
 
 	protected void execute(String[] args) {
-		System.out.println(System.getProperty("user.name"));
+		Shell.clearScreen();
 	}
 
 	@Override
 	public String[] getCommandAlias() {
-		return null;
+		String[] values = { "clear" };
+		return values;
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Show current users name";
+		return "Clear the console";
 	}
 
 }

@@ -19,22 +19,33 @@
  * 
  */
 
-package com.sangupta.andruil.command.file;
+package com.sangupta.andruil.commands.folder;
 
-import com.sangupta.andruil.command.AbstractCommand;
+import java.io.File;
+
+import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
  * @author sangupta
  *
  */
-public class FindCommand extends AbstractCommand {
+public class CreateDirectoryCommand extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "find";
+		return "mkdir";
+	}
+	
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandAlias()
+	 */
+	@Override
+	public String[] getCommandAlias() {
+		String[] values = { "md" };
+		return values;
 	}
 
 	/**
@@ -42,7 +53,15 @@ public class FindCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Searches for a text string in a file or files";
+		return "Creates a directory.";
+	}
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelp()
+	 */
+	@Override
+	public String getHelp() {
+		return null;
 	}
 
 	/**
@@ -50,8 +69,26 @@ public class FindCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
+		if(args.length == 0) {
+			System.out.println("The syntax of the command is incorrect.");
+			return;
+		}
+		
+		String dirName = args[0];
+		File file = resolveFile(dirName);
+		
+		if(file.exists()) {
+			System.out.print("A subdirectory or file ");
+			System.out.print(dirName);
+			System.out.println(" already exists.");
+			return;
+		}
+		
+		boolean success = file.mkdirs();
+		if(!success) {
+			System.out.print("Unable to create directory by the name of ");
+			System.out.println(dirName);
+		}
 	}
 
 }

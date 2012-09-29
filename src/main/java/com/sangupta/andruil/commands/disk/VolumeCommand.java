@@ -19,27 +19,24 @@
  * 
  */
 
-package com.sangupta.andruil.command.net;
+package com.sangupta.andruil.commands.disk;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.io.File;
 
-import com.sangupta.andruil.command.AbstractCommand;
+import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
  * @author sangupta
- * 
+ *
  */
-public class HostnameCommand extends AbstractCommand {
+public class VolumeCommand extends AbstractCommand {
 
 	/**
-	 * (non-Javadoc)
-	 * 
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "hostname";
+		return "vol";
 	}
 
 	/**
@@ -47,7 +44,7 @@ public class HostnameCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Prints the name of the current host.";
+		return "Displays the volume name";
 	}
 
 	/**
@@ -55,13 +52,13 @@ public class HostnameCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		try {
-			InetAddress addr = InetAddress.getLocalHost();
-			String hostname = addr.getHostName();
-			println(hostname);
-		} catch (UnknownHostException e) {
-			println("Unable to detect hostname.");
-		}
+		File file = new File("c:").getAbsoluteFile();
+		println(file.getName());
+		println(file.getAbsolutePath());
+	}
+	
+	public static void main(String[] args) throws Exception {
+		new VolumeCommand().execute(null);
 	}
 
 }

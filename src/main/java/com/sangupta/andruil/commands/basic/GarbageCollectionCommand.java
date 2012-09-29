@@ -19,29 +19,31 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.basic;
 
-import com.sangupta.andruil.Shell;
+import com.sangupta.andruil.commands.AbstractCommand;
 
-public class QuitShellCommand extends AbstractCommand {
-
-	public String getCommandName() {
-		return "exit";
-	}
-
-	protected void execute(String[] args) {
-		Shell.exitShell();
-	}
+/**
+ * 
+ * @author sangupta
+ *
+ */
+public class GarbageCollectionCommand extends AbstractCommand {
 
 	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "exit" };
-		return values;
+	public String getCommandName() {
+		return "gc";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Exit running shell.";
+		return "Run the garbage collection.";
+	}
+
+	@Override
+	protected void execute(String[] args) throws Exception {
+		println("Requesting garbage collection...");
+		System.gc();
 	}
 
 }

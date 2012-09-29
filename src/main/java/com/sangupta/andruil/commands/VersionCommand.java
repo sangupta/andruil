@@ -19,41 +19,33 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands;
 
-import java.util.List;
 
-import com.sangupta.andruil.Command;
-import com.sangupta.andruil.CommandExecutor;
+public class VersionCommand extends AbstractCommand {
 
-public class HelpListCommand extends AbstractCommand {
-
-	@Override
 	public String getCommandName() {
-		return "list";
+		return "ver";
 	}
 
-	@Override
 	protected void execute(String[] args) {
-		List<Command> commands = CommandExecutor.getCommands();
-		for(Command command : commands) {
-			String commandName = command.getCommandName();
-			String helpLine = command.getHelpLine();
-			
-			System.out.print(commandName);
-			System.out.print(": ");
-			System.out.println(helpLine);
-		}
+		println("");
+		println("Andruil - Java Command Shell");
+		println("by Sandeep Gupta - http://www.sangupta.com");
+		println("Version 0.0.1");
+		println("");
+		println("This program is in the public domain.");
 	}
-	
+
 	@Override
 	public String[] getCommandAlias() {
-		return null;
+		String[] values = { "version" };
+		return values;
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Show list of available commands";
+		return "Display shell version";
 	}
 
 }

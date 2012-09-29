@@ -19,22 +19,27 @@
  * 
  */
 
-package com.sangupta.andruil.command.file;
+package com.sangupta.andruil.commands.net;
 
-import com.sangupta.andruil.command.AbstractCommand;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
  * @author sangupta
- *
+ * 
  */
-public class FileCompareCommand extends AbstractCommand {
+public class HostnameCommand extends AbstractCommand {
 
 	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "fc";
+		return "hostname";
 	}
 
 	/**
@@ -42,7 +47,7 @@ public class FileCompareCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Compares two given files";
+		return "Prints the name of the current host.";
 	}
 
 	/**
@@ -50,8 +55,13 @@ public class FileCompareCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
+		try {
+			InetAddress addr = InetAddress.getLocalHost();
+			String hostname = addr.getHostName();
+			println(hostname);
+		} catch (UnknownHostException e) {
+			println("Unable to detect hostname.");
+		}
 	}
 
 }

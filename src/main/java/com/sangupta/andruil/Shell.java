@@ -62,7 +62,7 @@ public class Shell {
 		return reader.addCompleter(completer);
     }
     
-    public static void setMast(Character mask) {
+    public static void setMask(Character mask) {
     	Shell.mask = mask;
     }
     

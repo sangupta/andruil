@@ -19,11 +19,12 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.folder;
 
 import java.io.File;
 
 import com.sangupta.andruil.Andruil;
+import com.sangupta.andruil.commands.AbstractCommand;
 
 public class ChangeDirectoryCommand extends AbstractCommand {
 

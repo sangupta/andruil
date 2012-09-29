@@ -31,14 +31,29 @@ import javassist.Modifier;
 
 import org.reflections.Reflections;
 
+/**
+ * The basic command executor.
+ * 
+ * @author sangupta
+ *
+ */
 public class CommandExecutor {
 	
+	/**
+	 * A map of all command objects, where the command name is the key
+	 */
 	private static Map<String, Command> commandMap = new HashMap<String, Command>();
 	
+	/**
+	 * A list of all command objects
+	 */
 	private static final List<Command> commands = new ArrayList<Command>();
 	
+	/**
+	 * Read all commands via reflection
+	 */
 	static {
-		Reflections reflections = new Reflections("com.sangupta.andruil.command");
+		Reflections reflections = new Reflections("com.sangupta.andruil.commands");
 		Set<Class<? extends Command>> foundCommands = reflections.getSubTypesOf(Command.class);
 		
 		for(Class<? extends Command> clazz : foundCommands) {
@@ -79,6 +94,13 @@ public class CommandExecutor {
 		return commands;
 	}
 
+	/**
+	 * Checks if a command name is executable, by finding a matching command object
+	 * in our registry.
+	 * 
+	 * @param command
+	 * @return
+	 */
 	public static boolean isExecutableCommand(String command) {
 		if(commandMap.containsKey(command)) {
 			return true;
@@ -87,6 +109,12 @@ public class CommandExecutor {
 		return false;
 	}
 
+	/**
+	 * Execute a given command
+	 * 
+	 * @param commandName
+	 * @param arguments
+	 */
 	public static void executeCommand(String commandName, String arguments) {
 		Command command = commandMap.get(commandName);
 

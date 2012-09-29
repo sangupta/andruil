@@ -19,22 +19,24 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.folder;
 
 import java.io.File;
+
+import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
  * @author sangupta
  *
  */
-public class ListDirFilesCommand extends AbstractCommand {
+public class RemoveDirectoryCommand extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "ls";
+		return "rd";
 	}
 
 	/**
@@ -42,7 +44,15 @@ public class ListDirFilesCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "List files in the given folder.";
+		return "Removes (deletes) a directory.";
+	}
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelp()
+	 */
+	@Override
+	public String getHelp() {
+		return null;
 	}
 
 	/**
@@ -50,13 +60,27 @@ public class ListDirFilesCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		File curDir = new File(getCurrentWorkingDirectory());
-		String[] filesAndFolders = curDir.list();
+		if(args.length == 0) {
+			System.out.println("The syntax of the command is incorrect.");
+			return;
+		}
 		
-		if(filesAndFolders != null && filesAndFolders.length > 0) {
-			for(String name : filesAndFolders) {
-				getOut().println(name);
-			}
+		String dirName = args[0];
+		File file = resolveFile(dirName);
+		
+		if(!file.exists()) {
+			System.out.println("The system cannot find the file specified.");
+			return;
+		}
+		
+		if(!file.isDirectory()) {
+			System.out.println("File is not a directory.");
+			return;
+		}
+		
+		boolean success = file.delete();
+		if(!success) {
+			System.out.println("Directory not empty.");
 		}
 	}
 

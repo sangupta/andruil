@@ -19,29 +19,40 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.basic;
 
-import com.sangupta.andruil.Shell;
+import java.util.Date;
 
-public class ClearScreenCommand extends AbstractCommand {
-	
-	public String getCommandName() {
-		return "cls";
-	}
+import com.sangupta.andruil.commands.AbstractCommand;
 
-	protected void execute(String[] args) {
-		Shell.clearScreen();
-	}
+/**
+ * @author sangupta
+ *
+ */
+public class DateCommand extends AbstractCommand {
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "clear" };
-		return values;
+	public String getCommandName() {
+		return "date";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Clear the console";
+		return "Display the current system date";
+	}
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
+	@Override
+	protected void execute(String[] args) throws Exception {
+		getOut().println(new Date().toLocaleString());
 	}
 
 }

@@ -19,70 +19,57 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.checksum;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
-public class TypeCommand extends AbstractCommand {
+import org.apache.commons.io.FileUtils;
+
+import com.sangupta.andruil.commands.AbstractCommand;
+
+public class MD5Command extends AbstractCommand {
 
 	@Override
 	public String getCommandName() {
-		return "type";
-	}
-
-	@Override
-	public String[] getCommandAlias() {
-		return null;
+		return "md5";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Displays the contents of a text file or files.";
+		return "Computes MD5 of the given file.";
 	}
 
 	@Override
-	protected void execute(String[] args) {
+	protected void execute(String[] args) throws Exception {
 		if(args.length == 0) {
 			getOut().println("The syntax of the command is incorrect.");
 			return;
 		}
 		
-		String dirName = args[0];
-		File file = resolveFile(dirName);
+		File file = resolveFile(args[0]);
 		if(!file.exists()) {
 			getOut().println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(file.isDirectory()) {
-			getOut().println("Access is denied.");
+			getOut().println("File is a directory.");
 			return;
 		}
 		
-		BufferedReader reader = null;
+		byte[] bytes = FileUtils.readFileToByteArray(file);
 		try {
-			reader = new BufferedReader(new FileReader(file));
-			String line;
-			while((line = reader.readLine()) != null) {
-				System.out.println(line);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if(reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+	        byte[] array = md.digest(bytes);
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < array.length; ++i) {
+	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+	       }
+	        
+	        getOut().println(sb.toString());
+	    } catch (java.security.NoSuchAlgorithmException e) {
+	    	// do nothing
+	    }
 	}
 
 }

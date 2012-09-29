@@ -19,38 +19,29 @@
  * 
  */
 
-package com.sangupta.andruil.command;
+package com.sangupta.andruil.commands.user;
 
-import java.util.Date;
+import com.sangupta.andruil.commands.AbstractCommand;
 
-/**
- * @author sangupta
- *
- */
-public class DateCommand extends AbstractCommand {
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
-	 */
-	@Override
+public class WhoAmICommand extends AbstractCommand {
+
 	public String getCommandName() {
-		return "date";
+		return "whoami";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
-	 */
+	protected void execute(String[] args) {
+		System.out.println(System.getProperty("user.name"));
+	}
+
+	@Override
+	public String[] getCommandAlias() {
+		return null;
+	}
+
 	@Override
 	public String getHelpLine() {
-		return "Display the current system date";
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
-	@Override
-	protected void execute(String[] args) throws Exception {
-		getOut().println(new Date().toLocaleString());
+		return "Show current users name";
 	}
 
 }
