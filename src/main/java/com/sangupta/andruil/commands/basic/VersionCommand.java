@@ -24,31 +24,40 @@ package com.sangupta.andruil.commands.basic;
 import com.sangupta.andruil.commands.AbstractCommand;
 
 /**
- * Runs the java garbage collector as well as finalization. This
- * may help clean up some memory if pending.
+ * Output the OS version. Any arguments passed to the command
+ * are ignored.
  * 
  * @author sangupta
  *
  */
-public class GarbageCollectionCommand extends AbstractCommand {
+public class VersionCommand extends AbstractCommand {
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 */
 	@Override
 	public String getCommandName() {
-		return "gc";
+		return "ver";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Run the garbage collection.";
+		return "Display the OS version";
 	}
 
+	/**
+	 * 
+	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		println("Running finalization...");
-		Runtime.getRuntime().runFinalization();
+		String osName = System.getProperty("os.name");
+		String osVersion = System.getProperty("os.version");
 		
-		println("Requesting garbage collection...");
-		System.gc();
+		System.out.println(osName + " [Version " + osVersion + "]");
 	}
 
 }

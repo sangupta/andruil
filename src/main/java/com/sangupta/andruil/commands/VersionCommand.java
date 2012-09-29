@@ -21,11 +21,16 @@
 
 package com.sangupta.andruil.commands;
 
-
+/**
+ * Command to output the version of Andruil shell.
+ * 
+ * @author sangupta
+ *
+ */
 public class VersionCommand extends AbstractCommand {
 
 	public String getCommandName() {
-		return "ver";
+		return "me";
 	}
 
 	protected void execute(String[] args) {
@@ -45,7 +50,7 @@ public class VersionCommand extends AbstractCommand {
 
 	@Override
 	public String getHelpLine() {
-		return "Display shell version";
+		return "Display Andruil shell version";
 	}
 
 }

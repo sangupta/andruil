@@ -19,36 +19,16 @@
  * 
  */
 
-package com.sangupta.andruil.commands.basic;
-
-import com.sangupta.andruil.commands.AbstractCommand;
+package com.sangupta.andruil.constants;
 
 /**
- * Runs the java garbage collector as well as finalization. This
- * may help clean up some memory if pending.
- * 
  * @author sangupta
  *
  */
-public class GarbageCollectionCommand extends AbstractCommand {
-
-	@Override
-	public String getCommandName() {
-		return "gc";
-	}
-
-	@Override
-	public String getHelpLine() {
-		return "Run the garbage collection.";
-	}
-
-	@Override
-	protected void execute(String[] args) throws Exception {
-		println("Running finalization...");
-		Runtime.getRuntime().runFinalization();
-		
-		println("Requesting garbage collection...");
-		System.gc();
-	}
+public interface WindowsErrorMessages {
+	
+	public final String FILE_NOT_FOUND = "File does not exists.";
+	
+	public final String FILE_IS_A_FOLDER = "File is a directory.";
 
 }
