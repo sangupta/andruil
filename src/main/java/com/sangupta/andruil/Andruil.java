@@ -24,6 +24,9 @@ package com.sangupta.andruil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import org.reflections.Reflections;
 
 import jline.console.completer.StringsCompleter;
 
@@ -38,7 +41,10 @@ import com.sangupta.andruil.utils.TimeKeeper;
  */
 public class Andruil {
 	
-	private TimeKeeper timeKeeper = new TimeKeeper("Andruil");
+	/** 
+	 * The timekeeper instance for this instance of the shell
+	 */
+	private final TimeKeeper timeKeeper = new TimeKeeper("Andruil");
 	
 	private static File currentWorkingDirectory = new File(".").getAbsoluteFile().getParentFile();
 	
@@ -58,6 +64,7 @@ public class Andruil {
 		
 		// when we are done
 		// make an exit
+		andruil.timeKeeper.close();
 		System.out.print("\n\n");
 		System.out.println(andruil.timeKeeper);
 	}

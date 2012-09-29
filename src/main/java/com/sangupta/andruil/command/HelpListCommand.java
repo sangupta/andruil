@@ -21,6 +21,8 @@
 
 package com.sangupta.andruil.command;
 
+import java.util.List;
+
 import com.sangupta.andruil.Command;
 import com.sangupta.andruil.CommandExecutor;
 
@@ -33,7 +35,7 @@ public class HelpListCommand extends AbstractCommand {
 
 	@Override
 	protected void execute(String[] args) {
-		Command[] commands = CommandExecutor.getCommands();
+		List<Command> commands = CommandExecutor.getCommands();
 		for(Command command : commands) {
 			String commandName = command.getCommandName();
 			String helpLine = command.getHelpLine();

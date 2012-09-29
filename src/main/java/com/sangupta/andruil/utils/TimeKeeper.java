@@ -30,12 +30,56 @@ package com.sangupta.andruil.utils;
  */
 public class TimeKeeper {
 	
-	private String name;
+	/**
+	 * Unique name of this instance
+	 */
+	private String name = null;
 	
+	/**
+	 * Whether the instance has been closed or not
+	 */
+	private volatile boolean closed = false;
+	
+	/**
+	 * The instantiation time of this instance
+	 */
 	private long instantiationTime = System.currentTimeMillis();
+	
+	/**
+	 * The closing time of this instance
+	 */
+	private long closingTime = -1;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param name
+	 */
 	public TimeKeeper(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Close this instance of timekeeper. If the timekeeper has been closed
+	 * no more operations can be performed on the instance, except read requests.
+	 */
+	public void close() {
+		this.closed = true;
+		this.closingTime = System.currentTimeMillis();
+	}
+	
+	/**
+	 * Return the running time of this instance. If the instance has been closed, this
+	 * returns the total time, the instance ran for.
+	 * 
+	 * @return
+	 */
+	public long getRunningTime() {
+		if(!closed) {
+			return System.currentTimeMillis() - this.instantiationTime;
+		}
+		
+		return this.closingTime - this.instantiationTime;
 	}
 	
 	/**
@@ -43,6 +87,6 @@ public class TimeKeeper {
 	 */
 	@Override
 	public String toString() {
-		return this.name + " started at " + instantiationTime;
+		return this.name + " ran for " + (this.getRunningTime() / 1000) + " seconds.";
 	}
 }

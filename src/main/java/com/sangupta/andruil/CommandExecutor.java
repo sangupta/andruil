@@ -21,49 +21,43 @@
 
 package com.sangupta.andruil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import com.sangupta.andruil.command.ChangeDirectoryCommand;
-import com.sangupta.andruil.command.DateCommand;
-import com.sangupta.andruil.command.FileCompareCommand;
-import com.sangupta.andruil.command.GarbageCollectionCommand;
-import com.sangupta.andruil.command.HelpListCommand;
-import com.sangupta.andruil.command.ClearScreenCommand;
-import com.sangupta.andruil.command.CreateDirectoryCommand;
-import com.sangupta.andruil.command.ListDirFilesCommand;
-import com.sangupta.andruil.command.MD5Command;
-import com.sangupta.andruil.command.QuitShellCommand;
-import com.sangupta.andruil.command.RemoveDirectoryCommand;
-import com.sangupta.andruil.command.TailCommand;
-import com.sangupta.andruil.command.TypeCommand;
-import com.sangupta.andruil.command.VersionCommand;
-import com.sangupta.andruil.command.WhoAmICommand;
-import com.sangupta.andruil.command.net.HostnameCommand;
+import javassist.Modifier;
+
+import org.reflections.Reflections;
 
 public class CommandExecutor {
 	
 	private static Map<String, Command> commandMap = new HashMap<String, Command>();
 	
-	// TODO: this should be changed to read all commands from the com.sangupta.andruil.command
-	// package via reflection.
-	private static Command[] commands = {
-		new ClearScreenCommand(),
-		new QuitShellCommand(),
-		new WhoAmICommand(),
-		new VersionCommand(),
-		new HelpListCommand(),
-		new TypeCommand(),
-		new CreateDirectoryCommand(),
-		new RemoveDirectoryCommand(),
-		new MD5Command(),
-		new FileCompareCommand(),
-		new TailCommand(),
-		new ChangeDirectoryCommand(),
-		new DateCommand(),
-		new ListDirFilesCommand(),
-		new GarbageCollectionCommand(),
-		new HostnameCommand()
+	private static final List<Command> commands = new ArrayList<Command>();
+	
+	static {
+		Reflections reflections = new Reflections("com.sangupta.andruil.command");
+		Set<Class<? extends Command>> foundCommands = reflections.getSubTypesOf(Command.class);
+		
+		for(Class<? extends Command> clazz : foundCommands) {
+			Command command;
+			try {
+				if(Modifier.isAbstract(clazz.getModifiers())) {
+					// no need to instantiate abstract classes
+					continue;
+				}
+				
+				command = clazz.newInstance();
+				
+				CommandExecutor.commands.add(command);
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
 	};
 	
 	static {
@@ -81,7 +75,7 @@ public class CommandExecutor {
 		}
 	}
 
-	public static Command[] getCommands() {
+	public static List<Command> getCommands() {
 		return commands;
 	}
 
