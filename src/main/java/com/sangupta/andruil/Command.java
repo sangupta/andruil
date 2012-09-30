@@ -21,7 +21,6 @@
 
 package com.sangupta.andruil;
 
-import java.io.PrintWriter;
 
 /**
  * Contract for all implementation that need to serve as a command in the
@@ -75,11 +74,4 @@ public interface Command {
 	 */
 	public String getHelp();
 	
-	/**
-	 * Set the output writer for this command.
-	 * 
-	 * @param printWriter
-	 */
-	public void setOutputWriter(PrintWriter printWriter);
-
 }

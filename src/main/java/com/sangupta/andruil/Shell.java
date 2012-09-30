@@ -23,8 +23,10 @@ package com.sangupta.andruil;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
+import com.sangupta.andruil.support.OutputStreamOverWriter;
 import com.sangupta.andruil.utils.OSUtils;
 
 import jline.console.ConsoleReader;
@@ -85,6 +87,10 @@ public class Shell {
     }
     
 	public static void run() throws Exception {
+		// set the output string of the system to the one of shell
+		System.setOut(new PrintStream(new OutputStreamOverWriter(reader.getOutput())));
+		
+		// start reading and executing commands
         String line;
         while ((line = reader.readLine()) != null) {
         	// trim any extra white space

@@ -57,7 +57,7 @@ public class ListDirFilesCommand extends AbstractCommand {
 		
 		if(filesAndFolders != null && filesAndFolders.length > 0) {
 			for(String name : filesAndFolders) {
-				getOut().println(name);
+				this.out.println(name);
 			}
 		}
 	}

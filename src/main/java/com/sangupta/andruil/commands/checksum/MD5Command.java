@@ -42,18 +42,18 @@ public class MD5Command extends AbstractCommand {
 	@Override
 	protected void execute(String[] args) throws Exception {
 		if(args.length == 0) {
-			getOut().println("The syntax of the command is incorrect.");
+			this.out.println("The syntax of the command is incorrect.");
 			return;
 		}
 		
 		File file = resolveFile(args[0]);
 		if(!file.exists()) {
-			getOut().println("The system cannot find the file specified.");
+			this.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(file.isDirectory()) {
-			getOut().println("File is a directory.");
+			this.out.println("File is a directory.");
 			return;
 		}
 		
@@ -66,7 +66,7 @@ public class MD5Command extends AbstractCommand {
 	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
 	       }
 	        
-	        getOut().println(sb.toString());
+	        this.out.println(sb.toString());
 	    } catch (java.security.NoSuchAlgorithmException e) {
 	    	// do nothing
 	    }

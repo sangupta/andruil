@@ -49,19 +49,19 @@ public class TypeCommand extends AbstractCommand {
 	@Override
 	protected void execute(String[] args) {
 		if(args.length == 0) {
-			getOut().println("The syntax of the command is incorrect.");
+			this.out.println("The syntax of the command is incorrect.");
 			return;
 		}
 		
 		String dirName = args[0];
 		File file = resolveFile(dirName);
 		if(!file.exists()) {
-			getOut().println("The system cannot find the file specified.");
+			this.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(file.isDirectory()) {
-			getOut().println("Access is denied.");
+			this.out.println("Access is denied.");
 			return;
 		}
 		

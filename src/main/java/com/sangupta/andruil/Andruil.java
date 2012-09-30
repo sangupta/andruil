@@ -22,6 +22,7 @@
 package com.sangupta.andruil;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,7 +127,13 @@ public class Andruil {
 	 */
 	public static void changeCurrentDirectory(File file) {
 		if(file != null && file.exists() && file.isDirectory()) {
-			currentWorkingDirectory = file;
+			String path;
+			try {
+				path = file.getCanonicalPath();
+			} catch(IOException e) {
+				path = file.getAbsolutePath();
+			}
+			currentWorkingDirectory = new File(path);
 			updatePromptText();
 		}
 	}

@@ -26,6 +26,7 @@ import java.io.PrintWriter;
 
 import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.Command;
+import com.sangupta.andruil.Shell;
 
 /**
  * @author sangupta
@@ -33,8 +34,11 @@ import com.sangupta.andruil.Command;
  */
 public abstract class AbstractCommand implements Command {
 	
-	private PrintWriter out = null;
-
+	/**
+	 * Command's current output stream
+	 */
+	protected PrintWriter out = Shell.getOutStream();
+	
 	/**
 	 * @see com.sangupta.andruil.Command#getCommandName()
 	 */
@@ -75,37 +79,49 @@ public abstract class AbstractCommand implements Command {
 		}
 	}
 	
-	public PrintWriter getOut() {
-		if(this.out == null) {
-			this.out = new PrintWriter(System.out);
-		}
-		
-		return this.out;
-	}
-	
-	public void setOutputWriter(PrintWriter pw) {
-		this.out = pw;
-	}
-	
+	/**
+	 * Print the given string to the output stream and flush it as well.
+	 * 
+	 * @param string
+	 */
 	public void print(String string) {
-		getOut().print(string);
-		getOut().flush();
+		this.out.print(string);
+		this.out.flush();
 	}
 	
+	/**
+	 * Print the given string with a new line at the end to the output stream
+	 * and flush it as well.
+	 * 
+	 * @param string
+	 */
 	public void println(String string) {
-		getOut().println(string);
-		getOut().flush();
+		this.out.println(string);
+		this.out.flush();
 	}
 	
+	/**
+	 * Return the current working directory of the shell.
+	 * 
+	 * @return
+	 */
 	public String getCurrentWorkingDirectory() {
 		return Andruil.getCurrentDirectory().getAbsolutePath();
 	}
 	
+	/**
+	 * Resolve the file with the given current working directory of the 
+	 * shell.
+	 * 
+	 * @param dirName
+	 * @return
+	 */
 	public File resolveFile(String dirName) {
 		return new File(getCurrentWorkingDirectory(), dirName);
 	}
 	
 	/**
+	 * Execute the command with the given arguments.
 	 * 
 	 * @param args
 	 * @throws Exception

@@ -41,7 +41,7 @@ public class ChangeDirectoryCommand extends AbstractCommand {
 	@Override
 	protected void execute(String[] args) throws Exception {
 		if(args.length == 0) {
-			getOut().println(getCurrentWorkingDirectory());
+			this.out.println(getCurrentWorkingDirectory());
 			return;
 		}
 		
@@ -66,12 +66,12 @@ public class ChangeDirectoryCommand extends AbstractCommand {
 		}
 		
 		if(!dir.exists()) {
-			getOut().println("The system cannot find the file specified.");
+			this.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(!dir.isDirectory()) {
-			getOut().println("Access is denied.");
+			this.out.println("Access is denied.");
 			return;
 		}
 		

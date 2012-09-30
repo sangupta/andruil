@@ -125,7 +125,6 @@ public class CommandExecutor {
 			args = arguments.split(" ");
 		}
 
-		command.setOutputWriter(Shell.getOutStream());
 		command.run(args);
 	}
 

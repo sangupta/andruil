@@ -21,6 +21,7 @@
 
 package com.sangupta.andruil.commands.basic;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.sangupta.andruil.commands.AbstractCommand;
@@ -44,7 +45,7 @@ public class DateCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Display the current system date";
+		return "Display or sets the current system date";
 	}
 
 	/**
@@ -52,7 +53,9 @@ public class DateCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		getOut().println(new Date().toLocaleString());
+		Date current = new Date();
+		String formattedDate = new SimpleDateFormat("dd-MM-yyyy").format(current);
+		this.out.println("The current date is: " + formattedDate);
 	}
 
 }
