@@ -83,10 +83,19 @@ public class TimeKeeper {
 	}
 	
 	/**
+	 * Return the uptime of this time-keeper.
+	 * 
+	 * @return
+	 */
+	public String uptime() {
+		return (this.getRunningTime() / 1000) + " seconds.";
+	}
+	
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return this.name + " ran for " + (this.getRunningTime() / 1000) + " seconds.";
+		return this.name + " ran for " + uptime();
 	}
 }

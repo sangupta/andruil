@@ -22,23 +22,37 @@
 package com.sangupta.andruil.commands.checksum;
 
 import java.io.File;
+import java.util.zip.CRC32;
 
 import org.apache.commons.io.FileUtils;
 
 import com.sangupta.andruil.commands.AbstractCommand;
 
-public class MD5Command extends AbstractCommand {
+/**
+ * @author sangupta
+ *
+ */
+public class CRC32Command extends AbstractCommand {
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 */
 	@Override
 	public String getCommandName() {
-		return "md5";
+		return "crc32";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Computes MD5 hash of the given file.";
+		return "Computes CRC32 hash of the given file";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
 		if(args.length == 0) {
@@ -58,18 +72,9 @@ public class MD5Command extends AbstractCommand {
 		}
 		
 		byte[] bytes = FileUtils.readFileToByteArray(file);
-		try {
-	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-	        byte[] array = md.digest(bytes);
-	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < array.length; ++i) {
-	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-	       }
-	        
-	        this.out.println(sb.toString());
-	    } catch (java.security.NoSuchAlgorithmException e) {
-	    	// do nothing
-	    }
+		CRC32 crc32 = new CRC32();
+		crc32.update(bytes);
+		this.out.println(Long.toHexString(crc32.getValue()));
 	}
 
 }

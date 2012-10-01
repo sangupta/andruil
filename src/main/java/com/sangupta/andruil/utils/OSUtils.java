@@ -21,6 +21,8 @@
 
 package com.sangupta.andruil.utils;
 
+import java.io.IOException;
+
 /**
  * @author sangupta
  *
@@ -34,6 +36,17 @@ public class OSUtils {
 	 */
 	public static boolean isWindows() {
 		return true;
+	}
+	
+	public static boolean executeNativeCommand(String command) {
+		try {
+			Runtime.getRuntime().exec(command);
+			return true;
+		} catch(IOException e) {
+			
+		}
+		
+		return false;
 	}
 
 }

@@ -29,6 +29,7 @@ import java.util.List;
 import jline.console.completer.StringsCompleter;
 
 import com.sangupta.andruil.completer.ExtendedFileNameCompleter;
+import com.sangupta.andruil.support.Environment;
 import com.sangupta.andruil.utils.TimeKeeper;
 
 /**
@@ -39,11 +40,6 @@ import com.sangupta.andruil.utils.TimeKeeper;
  */
 public class Andruil {
 	
-	/** 
-	 * The timekeeper instance for this instance of the shell
-	 */
-	private final TimeKeeper timeKeeper = new TimeKeeper("Andruil");
-	
 	private static File currentWorkingDirectory = new File(".").getAbsoluteFile().getParentFile();
 	
 	/**
@@ -53,6 +49,9 @@ public class Andruil {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
+		// first thing is to initialize the environment
+		Environment.initialize();
+		
 		// TODO: we need to read the command line arguments to this shell
 		// this may provide customization options etc.
 		
@@ -62,9 +61,9 @@ public class Andruil {
 		
 		// when we are done
 		// make an exit
-		andruil.timeKeeper.close();
+		Environment.timeKeeper.close();
 		System.out.print("\n\n");
-		System.out.println(andruil.timeKeeper);
+		System.out.println(Environment.timeKeeper);
 	}
 	
 	/**

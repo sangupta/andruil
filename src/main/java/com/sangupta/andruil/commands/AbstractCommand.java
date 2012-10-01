@@ -22,6 +22,7 @@
 package com.sangupta.andruil.commands;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.sangupta.andruil.Andruil;
@@ -98,6 +99,16 @@ public abstract class AbstractCommand implements Command {
 	public void println(String string) {
 		this.out.println(string);
 		this.out.flush();
+	}
+	
+	protected String readLine(String prompt) {
+		try {
+			return Shell.getReader().readLine(prompt);
+		} catch(IOException e) {
+			
+		}
+		
+		return null;
 	}
 	
 	/**

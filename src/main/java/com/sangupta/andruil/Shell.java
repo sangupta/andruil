@@ -48,12 +48,19 @@ public class Shell {
 		ConsoleReader local = null;
     	try {
 			local = new ConsoleReader();
+			
     	} catch(IOException e) {
     		// do nothing
     	}
     	
 		reader = local;
 		out = new PrintWriter(reader.getOutput());
+
+		// set the output string of the system to the one of shell
+		PrintStream printStream = new PrintStream(new OutputStreamOverWriter(reader.getOutput()));
+		System.setOut(printStream);
+		System.setErr(printStream);
+		System.setIn(reader.getInput());
     }
     
     public static void setPrompt(String prompt) {
@@ -87,9 +94,6 @@ public class Shell {
     }
     
 	public static void run() throws Exception {
-		// set the output string of the system to the one of shell
-		System.setOut(new PrintStream(new OutputStreamOverWriter(reader.getOutput())));
-		
 		// start reading and executing commands
         String line;
         while ((line = reader.readLine()) != null) {
@@ -153,6 +157,10 @@ public class Shell {
 
 	public static void exitShell() {
 		exitShellNow = true;
+	}
+	
+	public static ConsoleReader getReader() {
+		return reader;
 	}
 
 }

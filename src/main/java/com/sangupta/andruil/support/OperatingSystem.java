@@ -19,40 +19,24 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
-
-import com.sangupta.andruil.support.Environment;
+package com.sangupta.andruil.support;
 
 /**
- * Command to output the version of Andruil shell.
+ * An enumeration that defines various operating system environments.
  * 
  * @author sangupta
  *
  */
-public class VersionCommand extends AbstractCommand {
-
-	public String getCommandName() {
-		return "me";
-	}
-
-	protected void execute(String[] args) {
-		println("");
-		println("Andruil - Java Command Shell");
-		println("by Sandeep Gupta - http://www.sangupta.com");
-		println("Version 0.0.1");
-		println("");
-		println("Andruil has been up for " + Environment.timeKeeper.uptime());
-	}
-
-	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "version" };
-		return values;
-	}
-
-	@Override
-	public String getHelpLine() {
-		return "Display Andruil shell version";
-	}
+public enum OperatingSystem {
+	
+	Windows,
+	
+	Macintosh,
+	
+	Linux,
+	
+	Solaris,
+	
+	Unknown;
 
 }

@@ -19,40 +19,42 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.support;
 
-import com.sangupta.andruil.support.Environment;
+import com.sangupta.andruil.utils.OSUtils;
+import com.sangupta.andruil.utils.TimeKeeper;
 
 /**
- * Command to output the version of Andruil shell.
+ * Holds details of the environment that we are running in.
  * 
  * @author sangupta
  *
  */
-public class VersionCommand extends AbstractCommand {
+public class Environment {
+	
+	/**
+	 * The operating system
+	 */
+	public static final OperatingSystem operatingSystem;
 
-	public String getCommandName() {
-		return "me";
+	static {
+		if(OSUtils.isWindows()) {
+			operatingSystem = OperatingSystem.Windows;
+		} else {
+			operatingSystem = OperatingSystem.Unknown;
+		}
 	}
+	
+	/** 
+	 * The timekeeper instance for this instance of the shell
+	 */
+	public static final TimeKeeper timeKeeper = new TimeKeeper("Andruil");
 
-	protected void execute(String[] args) {
-		println("");
-		println("Andruil - Java Command Shell");
-		println("by Sandeep Gupta - http://www.sangupta.com");
-		println("Version 0.0.1");
-		println("");
-		println("Andruil has been up for " + Environment.timeKeeper.uptime());
+	/**
+	 * Initialize the environment
+	 */
+	public static void initialize() {
+		
 	}
-
-	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "version" };
-		return values;
-	}
-
-	@Override
-	public String getHelpLine() {
-		return "Display Andruil shell version";
-	}
-
+	
 }

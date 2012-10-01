@@ -33,6 +33,11 @@ import com.sangupta.andruil.commands.AbstractCommand;
 public class DateCommand extends AbstractCommand {
 
 	/**
+	 * The date format to be used
+	 */
+	private static final String DATE_FORMAT = "dd-MM-yyyy";
+
+	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
@@ -53,9 +58,61 @@ public class DateCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
+		if(args.length == 0) {
+			display(true);
+			ask();
+		} else {
+			if(args.length > 1) {
+				this.out.println("The system cannot accept the date entered.");
+				ask();
+			} else {
+				if("/t".equalsIgnoreCase(args[0])) {
+					display(false);
+					return;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Display the current date with the prompt if needed
+	 */
+	private void display(boolean showPrompt) {
+		if(showPrompt) {
+			this.out.print("The current date is: ");
+		}
+		
 		Date current = new Date();
-		String formattedDate = new SimpleDateFormat("dd-MM-yyyy").format(current);
-		this.out.println("The current date is: " + formattedDate);
+		String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(current);
+		this.out.println(formattedDate);
+	}
+	
+	/**
+	 * Ask the user for the current date
+	 */
+	private void ask() {
+		this.out.println("Andruil: Not yet implemented");
+		
+		
+//		final String date = this.readLine("Enter the new date: (" + DATE_FORMAT + ") ");
+//		if(AssertUtils.isEmpty(date)) {
+//			return;
+//		}
+//		
+//		try {
+//			Date provided = new SimpleDateFormat(DATE_FORMAT).parse(date);
+//			switch(Environment.operatingSystem) {
+//				case Windows:
+//					OSUtils.executeNativeCommand("date " + date);
+//					return;
+//					
+//				default:
+//					this.out.println("Andruil: Not yet implemented");
+//			}
+//		} catch(ParseException e) {
+//			this.out.println("The system cannot accept the date entered.");
+//			ask();
+//		}
 	}
 
 }
