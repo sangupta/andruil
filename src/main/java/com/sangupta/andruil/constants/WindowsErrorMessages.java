@@ -27,8 +27,10 @@ package com.sangupta.andruil.constants;
  */
 public interface WindowsErrorMessages {
 	
-	public final String FILE_NOT_FOUND = "File does not exists.";
+	public static final String FILE_NOT_FOUND = "The system cannot find the file specified.";
 	
-	public final String FILE_IS_A_FOLDER = "File is a directory.";
+	public static final String FILE_IS_A_FOLDER = "File is a directory.";
+	
+	public static final String INCORRECT_SYNTAX = "The syntax of the command is incorrect.";
 
 }

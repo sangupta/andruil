@@ -21,6 +21,14 @@
 
 package com.sangupta.andruil.utils;
 
+import java.io.File;
+import java.io.FileFilter;
+
+import org.apache.commons.io.IOCase;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+
+import com.sangupta.andruil.Andruil;
+
 /**
  * Utility function around validation, conversion and decomposition
  * of command arguments.
@@ -76,5 +84,29 @@ public class ArgumentUtils {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Resolve the supplied file argument which may contain wildcards
+	 * to a list of all valid files.
+	 * 
+	 * @param arg
+	 * @return
+	 */
+	public static File[] resolveFiles(String arg) {
+		if(arg == null) {
+			return null;
+		}
+		
+		if(!hasWildcards(arg)) {
+			File file = new File(Andruil.getCurrentDirectory().getAbsoluteFile(), arg);
+			return new File[] { file };
+		}
+		
+		// the argument does have wild cards
+		// resolve it
+		FileFilter wildcardFileFilter = new WildcardFileFilter(arg, IOCase.SYSTEM);
+		File[] files = Andruil.getCurrentDirectory().listFiles(wildcardFileFilter);
+		return files;
 	}
 }
