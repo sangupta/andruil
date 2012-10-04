@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.file;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
  * @author sangupta

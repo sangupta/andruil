@@ -23,7 +23,7 @@ package com.sangupta.andruil.commands.disk;
 
 import java.io.File;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
  * @author sangupta

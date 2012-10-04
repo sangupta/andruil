@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.basic;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
  * Runs the java garbage collector as well as finalization. This

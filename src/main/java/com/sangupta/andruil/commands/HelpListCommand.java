@@ -25,7 +25,14 @@ import java.util.List;
 
 import com.sangupta.andruil.Command;
 import com.sangupta.andruil.CommandExecutor;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
+/**
+ * Print a list of all commands and their single line help statements.
+ * 
+ * @author sangupta
+ *
+ */
 public class HelpListCommand extends AbstractCommand {
 
 	@Override

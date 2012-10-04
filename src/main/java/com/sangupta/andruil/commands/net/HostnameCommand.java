@@ -24,7 +24,7 @@ package com.sangupta.andruil.commands.net;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
  * @author sangupta

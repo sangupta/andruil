@@ -22,6 +22,7 @@
 package com.sangupta.andruil.commands;
 
 import com.sangupta.andruil.Shell;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 public class QuitShellCommand extends AbstractCommand {
 

@@ -24,7 +24,7 @@ package com.sangupta.andruil.commands.basic;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
  * @author sangupta

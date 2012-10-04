@@ -28,7 +28,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 public class TailCommand extends AbstractCommand {
 

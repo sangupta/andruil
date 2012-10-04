@@ -21,6 +21,7 @@
 
 package com.sangupta.andruil.commands;
 
+import com.sangupta.andruil.commands.base.AbstractCommand;
 import com.sangupta.andruil.support.Environment;
 
 /**

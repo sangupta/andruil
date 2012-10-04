@@ -30,7 +30,6 @@ import jline.console.completer.StringsCompleter;
 
 import com.sangupta.andruil.completer.ExtendedFileNameCompleter;
 import com.sangupta.andruil.support.Environment;
-import com.sangupta.andruil.utils.TimeKeeper;
 
 /**
  * Main entry point for the shell.

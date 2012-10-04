@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.user;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractCommand;
 
 
 public class WhoAmICommand extends AbstractCommand {

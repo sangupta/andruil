@@ -22,18 +22,17 @@
 package com.sangupta.andruil.commands.checksum;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.sangupta.andruil.commands.AbstractCommand;
-import com.sangupta.andruil.constants.WindowsErrorMessages;
-import com.sangupta.andruil.utils.ArgumentUtils;
+import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
 /**
  * @author sangupta
  *
  */
-public class SHA1Command extends AbstractCommand {
+public class SHA1Command extends AbstractMultiFileCommand {
 
 	/**
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
@@ -55,52 +54,28 @@ public class SHA1Command extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
 	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
-		if(args.length == 0) {
-			this.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
-			return;
+	protected boolean processFile(File file) throws IOException {
+		if(file.isDirectory()) {
+			return true;
 		}
 		
-		File[] files = ArgumentUtils.resolveFiles(args[0]);
-		if(files == null) {
-			this.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
-			return;
-		}
+		byte[] bytes = FileUtils.readFileToByteArray(file);
+		try {
+	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA1");
+	        byte[] array = md.digest(bytes);
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < array.length; ++i) {
+	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+	       }
+	        
+	        this.out.println(sb.toString() + " *" + file.getName());
+	    } catch (java.security.NoSuchAlgorithmException e) {
+	    	// do nothing
+	    	this.out.println("No SHA1 implementation available");
+	    	return false;
+	    }
 		
-		if(files.length == 1) {
-			File file = files[0];
-			if(!file.exists()) {
-				this.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
-				return;
-			}
-			
-			if(file.isDirectory()) {
-				this.out.println(WindowsErrorMessages.FILE_IS_A_FOLDER);
-				return;
-			}
-		}
-		
-		for(File file : files) {
-			if(file.isDirectory()) {
-				continue;
-			}
-			
-			byte[] bytes = FileUtils.readFileToByteArray(file);
-			try {
-		        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA1");
-		        byte[] array = md.digest(bytes);
-		        StringBuilder sb = new StringBuilder();
-		        for (int i = 0; i < array.length; ++i) {
-		          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-		       }
-		        
-		        this.out.println(sb.toString() + " *" + file.getName());
-		    } catch (java.security.NoSuchAlgorithmException e) {
-		    	// do nothing
-		    	this.out.println("No SHA1 implementation available");
-		    	break;
-		    }
-		}
+		return true;
 	}
 
 }

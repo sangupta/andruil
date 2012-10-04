@@ -22,17 +22,18 @@
 package com.sangupta.andruil.commands.checksum;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.zip.CRC32;
 
 import org.apache.commons.io.FileUtils;
 
-import com.sangupta.andruil.commands.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
 /**
  * @author sangupta
  *
  */
-public class CRC32Command extends AbstractCommand {
+public class CRC32Command extends AbstractMultiFileCommand {
 
 	/**
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
@@ -54,27 +55,17 @@ public class CRC32Command extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
 	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
-		if(args.length == 0) {
-			this.out.println("The syntax of the command is incorrect.");
-			return;
-		}
-		
-		File file = resolveFile(args[0]);
-		if(!file.exists()) {
-			this.out.println("The system cannot find the file specified.");
-			return;
-		}
-		
+	protected boolean processFile(File file) throws IOException {
 		if(file.isDirectory()) {
-			this.out.println("File is a directory.");
-			return;
+			return true;
 		}
 		
 		byte[] bytes = FileUtils.readFileToByteArray(file);
 		CRC32 crc32 = new CRC32();
 		crc32.update(bytes);
-		this.out.println(Long.toHexString(crc32.getValue()));
+		this.out.println(Long.toHexString(crc32.getValue()) + " *" + file.getName());
+		
+		return true;
 	}
 
 }

@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.base;
 
 import java.io.File;
 import java.io.IOException;
