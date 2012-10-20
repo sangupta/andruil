@@ -23,31 +23,37 @@ package com.sangupta.andruil.commands.checksum;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.zip.CRC32;
 
 import org.apache.commons.io.FileUtils;
 
 import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
-public class MD5Command extends AbstractMultiFileCommand {
+/**
+ * @author sangupta
+ *
+ */
+public class Crc32 extends AbstractMultiFileCommand {
 
-	@Override
-	public String getCommandName() {
-		return "md5";
-	}
-	
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandAlias()
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String[] getCommandAlias() {
-		return new String[] { "md5sum" };
+	public String getCommandName() {
+		return "crc32";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Computes MD5 hash of the given file.";
+		return "Computes CRC32 hash of the given file";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected boolean processFile(File file) throws IOException {
 		if(file.isDirectory()) {
@@ -55,20 +61,9 @@ public class MD5Command extends AbstractMultiFileCommand {
 		}
 		
 		byte[] bytes = FileUtils.readFileToByteArray(file);
-		try {
-	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-	        byte[] array = md.digest(bytes);
-	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < array.length; ++i) {
-	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-	       }
-	        
-	        this.out.println(sb.toString() + " *" + file.getName());
-	    } catch (java.security.NoSuchAlgorithmException e) {
-	    	// do nothing
-	    	this.out.println("No MD5 implementation available");
-	    	return false;
-	    }
+		CRC32 crc32 = new CRC32();
+		crc32.update(bytes);
+		this.out.println(Long.toHexString(crc32.getValue()) + " *" + file.getName());
 		
 		return true;
 	}

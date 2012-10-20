@@ -19,63 +19,36 @@
  * 
  */
 
-package com.sangupta.andruil.commands.folder;
+package com.sangupta.andruil.commands.basic;
 
-import java.io.File;
-
-import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
-public class ChangeDirectoryCommand extends AbstractCommand {
+/**
+ * Runs the java garbage collector as well as finalization. This
+ * may help clean up some memory if pending.
+ * 
+ * @author sangupta
+ *
+ */
+public class GarbageCollection extends AbstractCommand {
 
 	@Override
 	public String getCommandName() {
-		return "cd";
+		return "gc";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Displays the name of or changes the current directory";
+		return "Run the garbage collection.";
 	}
 
 	@Override
 	protected void execute(String[] args) throws Exception {
-		if(args.length == 0) {
-			this.out.println(getCurrentWorkingDirectory());
-			return;
-		}
+		println("Running finalization...");
+		Runtime.getRuntime().runFinalization();
 		
-		String dirName = args[0].trim();
-		
-		if(".".equals(dirName)) {
-			return;
-		}
-		
-		File dir = null;
-		
-		if("..".equals(dirName)) {
-			dir = new File(getCurrentWorkingDirectory()).getParentFile();
-		}
-		
-		if("\\".equals(dirName) || "/".equals(dirName)) {
-			dir = new File("/");
-		}
-		
-		if(dir == null) {
-			dir = resolveFile(dirName);
-		}
-		
-		if(!dir.exists()) {
-			this.out.println("The system cannot find the file specified.");
-			return;
-		}
-		
-		if(!dir.isDirectory()) {
-			this.out.println("Access is denied.");
-			return;
-		}
-		
-		Andruil.changeCurrentDirectory(dir);
+		println("Requesting garbage collection...");
+		System.gc();
 	}
 
 }

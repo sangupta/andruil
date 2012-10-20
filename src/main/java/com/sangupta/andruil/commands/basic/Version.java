@@ -19,47 +19,45 @@
  * 
  */
 
-package com.sangupta.andruil.commands.folder;
-
-import java.io.File;
+package com.sangupta.andruil.commands.basic;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
+ * Output the OS version. Any arguments passed to the command
+ * are ignored.
+ * 
  * @author sangupta
  *
  */
-public class ListDirFilesCommand extends AbstractCommand {
+public class Version extends AbstractCommand {
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "ls";
+		return "ver";
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {
-		return "List files in the given folder.";
+		return "Display the OS version";
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 * 
+	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		File curDir = new File(getCurrentWorkingDirectory());
-		String[] filesAndFolders = curDir.list();
+		String osName = System.getProperty("os.name");
+		String osVersion = System.getProperty("os.version");
 		
-		if(filesAndFolders != null && filesAndFolders.length > 0) {
-			for(String name : filesAndFolders) {
-				this.out.println(name);
-			}
-		}
+		System.out.println(osName + " [Version " + osVersion + "]");
 	}
 
 }

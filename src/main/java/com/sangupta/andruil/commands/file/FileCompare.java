@@ -19,36 +19,39 @@
  * 
  */
 
-package com.sangupta.andruil.commands.basic;
+package com.sangupta.andruil.commands.file;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
- * Runs the java garbage collector as well as finalization. This
- * may help clean up some memory if pending.
- * 
  * @author sangupta
  *
  */
-public class GarbageCollectionCommand extends AbstractCommand {
+public class FileCompare extends AbstractCommand {
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
 	public String getCommandName() {
-		return "gc";
+		return "fc";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Run the garbage collection.";
+		return "Compares two given files";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		println("Running finalization...");
-		Runtime.getRuntime().runFinalization();
-		
-		println("Requesting garbage collection...");
-		System.gc();
+		// TODO Auto-generated method stub
+
 	}
 
 }

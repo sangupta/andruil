@@ -29,7 +29,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class CreateDirectoryCommand extends AbstractCommand {
+public class CreateDirectory extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()

@@ -30,7 +30,12 @@ import java.util.Arrays;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
-public class TailCommand extends AbstractCommand {
+/**
+ * 
+ * @author sangupta
+ *
+ */
+public class Tail extends AbstractCommand {
 
 	@Override
 	public String getCommandName() {
@@ -63,11 +68,6 @@ public class TailCommand extends AbstractCommand {
 		tail(file, 10, 1);
 	}
 	
-	public static void main(String[] args) throws Exception {
-		TailCommand tc = new TailCommand();
-		tc.execute(new String[] { "pom.xml" });
-	}
-
 	/**
 	 * @param file
 	 * @throws FileNotFoundException 

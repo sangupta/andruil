@@ -19,29 +19,42 @@
  * 
  */
 
-package com.sangupta.andruil.commands.user;
+package com.sangupta.andruil.commands.disk;
+
+import java.io.File;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
+/**
+ * @author sangupta
+ *
+ */
+public class Volume extends AbstractCommand {
 
-public class WhoAmICommand extends AbstractCommand {
-
-	public String getCommandName() {
-		return "whoami";
-	}
-
-	protected void execute(String[] args) {
-		System.out.println(System.getProperty("user.name"));
-	}
-
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
-	public String[] getCommandAlias() {
-		return null;
+	public String getCommandName() {
+		return "vol";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Show current users name";
+		return "Displays the volume name";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
+	@Override
+	protected void execute(String[] args) throws Exception {
+		File file = new File("c:").getAbsoluteFile();
+		println(file.getName());
+		println(file.getAbsolutePath());
+	}
+	
 }

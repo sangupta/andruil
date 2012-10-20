@@ -23,65 +23,65 @@ package com.sangupta.andruil.commands.folder;
 
 import java.io.File;
 
+import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
+ * Change the current working directory
+ * 
  * @author sangupta
  *
  */
-public class RemoveDirectoryCommand extends AbstractCommand {
+public class ChangeDirectory extends AbstractCommand {
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
-	 */
 	@Override
 	public String getCommandName() {
-		return "rd";
+		return "cd";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
-	 */
 	@Override
 	public String getHelpLine() {
-		return "Removes (deletes) a directory.";
+		return "Displays the name of or changes the current directory";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelp()
-	 */
-	@Override
-	public String getHelp() {
-		return null;
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
 		if(args.length == 0) {
-			System.out.println("The syntax of the command is incorrect.");
+			this.out.println(getCurrentWorkingDirectory());
 			return;
 		}
 		
-		String dirName = args[0];
-		File file = resolveFile(dirName);
+		String dirName = args[0].trim();
 		
-		if(!file.exists()) {
-			System.out.println("The system cannot find the file specified.");
+		if(".".equals(dirName)) {
 			return;
 		}
 		
-		if(!file.isDirectory()) {
-			System.out.println("File is not a directory.");
+		File dir = null;
+		
+		if("..".equals(dirName)) {
+			dir = new File(getCurrentWorkingDirectory()).getParentFile();
+		}
+		
+		if("\\".equals(dirName) || "/".equals(dirName)) {
+			dir = new File("/");
+		}
+		
+		if(dir == null) {
+			dir = resolveFile(dirName);
+		}
+		
+		if(!dir.exists()) {
+			this.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
-		boolean success = file.delete();
-		if(!success) {
-			System.out.println("Directory not empty.");
+		if(!dir.isDirectory()) {
+			this.out.println("Access is denied.");
+			return;
 		}
+		
+		Andruil.changeCurrentDirectory(dir);
 	}
 
 }

@@ -19,49 +19,35 @@
  * 
  */
 
-package com.sangupta.andruil.commands.net;
+package com.sangupta.andruil.commands;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
+import com.sangupta.andruil.Shell;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
- * @author sangupta
  * 
+ * @author sangupta
+ *
  */
-public class HostnameCommand extends AbstractCommand {
-
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
-	 */
-	@Override
+public class ClearScreen extends AbstractCommand {
+	
 	public String getCommandName() {
-		return "hostname";
+		return "cls";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
-	 */
+	protected void execute(String[] args) {
+		Shell.clearScreen();
+	}
+
+	@Override
+	public String[] getCommandAlias() {
+		String[] values = { "clear" };
+		return values;
+	}
+
 	@Override
 	public String getHelpLine() {
-		return "Prints the name of the current host.";
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
-	@Override
-	protected void execute(String[] args) throws Exception {
-		try {
-			InetAddress addr = InetAddress.getLocalHost();
-			String hostname = addr.getHostName();
-			println(hostname);
-		} catch (UnknownHostException e) {
-			println("Unable to detect hostname.");
-		}
+		return "Clear the console";
 	}
 
 }

@@ -28,31 +28,26 @@ import org.apache.commons.io.FileUtils;
 
 import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
-/**
- * @author sangupta
- *
- */
-public class SHA1Command extends AbstractMultiFileCommand {
+public class MD5 extends AbstractMultiFileCommand {
 
-	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
-	 */
 	@Override
 	public String getCommandName() {
-		return "sha1";
+		return "md5";
 	}
-
+	
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandAlias()
 	 */
 	@Override
-	public String getHelpLine() {
-		return "Computes SHA1 hash of the given file";
+	public String[] getCommandAlias() {
+		return new String[] { "md5sum" };
 	}
 
-	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
-	 */
+	@Override
+	public String getHelpLine() {
+		return "Computes MD5 hash of the given file.";
+	}
+
 	@Override
 	protected boolean processFile(File file) throws IOException {
 		if(file.isDirectory()) {
@@ -61,7 +56,7 @@ public class SHA1Command extends AbstractMultiFileCommand {
 		
 		byte[] bytes = FileUtils.readFileToByteArray(file);
 		try {
-	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA1");
+	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
 	        byte[] array = md.digest(bytes);
 	        StringBuilder sb = new StringBuilder();
 	        for (int i = 0; i < array.length; ++i) {
@@ -71,7 +66,7 @@ public class SHA1Command extends AbstractMultiFileCommand {
 	        this.out.println(sb.toString() + " *" + file.getName());
 	    } catch (java.security.NoSuchAlgorithmException e) {
 	    	// do nothing
-	    	this.out.println("No SHA1 implementation available");
+	    	this.out.println("No MD5 implementation available");
 	    	return false;
 	    }
 		

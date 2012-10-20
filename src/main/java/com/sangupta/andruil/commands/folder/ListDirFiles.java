@@ -19,30 +19,47 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.folder;
 
-import com.sangupta.andruil.Shell;
+import java.io.File;
+
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
-public class QuitShellCommand extends AbstractCommand {
+/**
+ * @author sangupta
+ *
+ */
+public class ListDirFiles extends AbstractCommand {
 
-	public String getCommandName() {
-		return "exit";
-	}
-
-	protected void execute(String[] args) {
-		Shell.exitShell();
-	}
-
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 */
 	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "exit" };
-		return values;
+	public String getCommandName() {
+		return "ls";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Exit running shell.";
+		return "List files in the given folder.";
+	}
+
+	/**
+	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
+	 */
+	@Override
+	protected void execute(String[] args) throws Exception {
+		File curDir = new File(getCurrentWorkingDirectory());
+		String[] filesAndFolders = curDir.list();
+		
+		if(filesAndFolders != null && filesAndFolders.length > 0) {
+			for(String name : filesAndFolders) {
+				this.out.println(name);
+			}
+		}
 	}
 
 }

@@ -21,28 +21,38 @@
 
 package com.sangupta.andruil.commands;
 
-import com.sangupta.andruil.Shell;
 import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.support.Environment;
 
-public class ClearScreenCommand extends AbstractCommand {
-	
+/**
+ * Command to output the version of Andruil shell.
+ * 
+ * @author sangupta
+ *
+ */
+public class AndruilVersion extends AbstractCommand {
+
 	public String getCommandName() {
-		return "cls";
+		return "me";
 	}
 
 	protected void execute(String[] args) {
-		Shell.clearScreen();
+		println("");
+		println("Andruil - Java Command Shell");
+		println("by Sandeep Gupta - http://www.sangupta.com");
+		println("Version 0.0.1");
+		println("");
+		println("Andruil has been up for " + Environment.timeKeeper.uptime());
 	}
 
 	@Override
 	public String[] getCommandAlias() {
-		String[] values = { "clear" };
-		return values;
+		return null;
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Clear the console";
+		return "Display Andruil shell version";
 	}
 
 }

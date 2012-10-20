@@ -30,7 +30,7 @@ import com.sangupta.andruil.constants.UnixErrorMessages;
  * @author sangupta
  *
  */
-public class SleepCommand extends AbstractCommand {
+public class Sleep extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()

@@ -19,25 +19,27 @@
  * 
  */
 
-package com.sangupta.andruil.commands.basic;
+package com.sangupta.andruil.commands.checksum;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+
+import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
 /**
- * Output the OS version. Any arguments passed to the command
- * are ignored.
- * 
  * @author sangupta
  *
  */
-public class VersionCommand extends AbstractCommand {
+public class SHA1 extends AbstractMultiFileCommand {
 
 	/**
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "ver";
+		return "sha1";
 	}
 
 	/**
@@ -45,19 +47,35 @@ public class VersionCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Display the OS version";
+		return "Computes SHA1 hash of the given file";
 	}
 
 	/**
-	 * 
 	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
 	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
-		String osName = System.getProperty("os.name");
-		String osVersion = System.getProperty("os.version");
+	protected boolean processFile(File file) throws IOException {
+		if(file.isDirectory()) {
+			return true;
+		}
 		
-		System.out.println(osName + " [Version " + osVersion + "]");
+		byte[] bytes = FileUtils.readFileToByteArray(file);
+		try {
+	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA1");
+	        byte[] array = md.digest(bytes);
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < array.length; ++i) {
+	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+	       }
+	        
+	        this.out.println(sb.toString() + " *" + file.getName());
+	    } catch (java.security.NoSuchAlgorithmException e) {
+	    	// do nothing
+	    	this.out.println("No SHA1 implementation available");
+	    	return false;
+	    }
+		
+		return true;
 	}
 
 }

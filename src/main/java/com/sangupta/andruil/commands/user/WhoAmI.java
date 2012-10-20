@@ -19,39 +19,33 @@
  * 
  */
 
-package com.sangupta.andruil.commands.file;
+package com.sangupta.andruil.commands.user;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
+ * 
  * @author sangupta
  *
  */
-public class FileCompareCommand extends AbstractCommand {
+public class WhoAmI extends AbstractCommand {
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
-	 */
-	@Override
 	public String getCommandName() {
-		return "fc";
+		return "whoami";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
-	 */
+	protected void execute(String[] args) {
+		System.out.println(System.getProperty("user.name"));
+	}
+
+	@Override
+	public String[] getCommandAlias() {
+		return null;
+	}
+
 	@Override
 	public String getHelpLine() {
-		return "Compares two given files";
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
-	@Override
-	protected void execute(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
+		return "Show current users name";
 	}
 
 }

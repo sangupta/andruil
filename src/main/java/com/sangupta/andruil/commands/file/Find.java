@@ -19,9 +19,7 @@
  * 
  */
 
-package com.sangupta.andruil.commands.disk;
-
-import java.io.File;
+package com.sangupta.andruil.commands.file;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
@@ -29,14 +27,14 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class VolumeCommand extends AbstractCommand {
+public class Find extends AbstractCommand {
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getCommandName() {
-		return "vol";
+		return "find";
 	}
 
 	/**
@@ -44,7 +42,7 @@ public class VolumeCommand extends AbstractCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Displays the volume name";
+		return "Searches for a text string in a file or files";
 	}
 
 	/**
@@ -52,13 +50,8 @@ public class VolumeCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
-		File file = new File("c:").getAbsoluteFile();
-		println(file.getName());
-		println(file.getAbsolutePath());
-	}
-	
-	public static void main(String[] args) throws Exception {
-		new VolumeCommand().execute(null);
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -21,39 +21,33 @@
 
 package com.sangupta.andruil.commands;
 
+import com.sangupta.andruil.Shell;
 import com.sangupta.andruil.commands.base.AbstractCommand;
-import com.sangupta.andruil.support.Environment;
 
 /**
- * Command to output the version of Andruil shell.
+ * Quit the shell right now.
  * 
  * @author sangupta
  *
  */
-public class VersionCommand extends AbstractCommand {
+public class QuitShell extends AbstractCommand {
 
 	public String getCommandName() {
-		return "me";
+		return "exit";
 	}
 
 	protected void execute(String[] args) {
-		println("");
-		println("Andruil - Java Command Shell");
-		println("by Sandeep Gupta - http://www.sangupta.com");
-		println("Version 0.0.1");
-		println("");
-		println("Andruil has been up for " + Environment.timeKeeper.uptime());
+		Shell.exitShell();
 	}
 
 	@Override
 	public String[] getCommandAlias() {
-		String[] values = { "version" };
-		return values;
+		return null;
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Display Andruil shell version";
+		return "Exit running shell.";
 	}
 
 }

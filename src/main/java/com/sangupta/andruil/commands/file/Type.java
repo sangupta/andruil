@@ -29,7 +29,13 @@ import java.io.IOException;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
-public class TypeCommand extends AbstractCommand {
+/**
+ * Display the contents of a text file
+ * 
+ * @author sangupta
+ *
+ */
+public class Type extends AbstractCommand {
 
 	@Override
 	public String getCommandName() {
