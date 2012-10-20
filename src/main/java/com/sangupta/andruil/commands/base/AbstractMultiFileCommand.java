@@ -41,6 +41,8 @@ public abstract class AbstractMultiFileCommand extends AbstractCommand {
 	 */
 	@Override
 	protected void execute(String[] args) throws Exception {
+		preProcess();
+		
 		if(args.length == 0) {
 			this.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
 			return;
@@ -88,6 +90,14 @@ public abstract class AbstractMultiFileCommand extends AbstractCommand {
 	 * @return
 	 */
 	protected abstract boolean processFile(File file) throws IOException;
+	
+	/**
+	 * Method that is invoked before any file starts getting processed.
+	 * 
+	 */
+	protected void preProcess() {
+		
+	}
 	
 	/**
 	 * Method that is invoked once all the files have been processed.
