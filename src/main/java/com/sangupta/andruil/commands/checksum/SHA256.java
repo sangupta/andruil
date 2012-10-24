@@ -23,24 +23,26 @@ package com.sangupta.andruil.commands.checksum;
 
 import com.sangupta.andruil.commands.base.AbstractHashCommand;
 
-public class MD5 extends AbstractHashCommand {
+/**
+ * @author sangupta
+ *
+ */
+public class SHA256 extends AbstractHashCommand {
 
-	@Override
-	public String getCommandName() {
-		return "md5";
-	}
-	
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandAlias()
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String[] getCommandAlias() {
-		return new String[] { "md5sum" };
+	public String getCommandName() {
+		return "sha256";
 	}
 
+	/**
+	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 */
 	@Override
 	public String getHelpLine() {
-		return "Computes MD5 hash of the given file.";
+		return "Computes SHA1 hash of the given file";
 	}
 
 
@@ -49,7 +51,7 @@ public class MD5 extends AbstractHashCommand {
 	 */
 	@Override
 	protected String getAlgorithmName() {
-		return "md5";
+		return "sha-256";
 	}
 
 }

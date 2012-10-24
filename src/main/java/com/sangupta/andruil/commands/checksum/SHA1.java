@@ -21,18 +21,13 @@
 
 package com.sangupta.andruil.commands.checksum;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-
-import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
+import com.sangupta.andruil.commands.base.AbstractHashCommand;
 
 /**
  * @author sangupta
  *
  */
-public class SHA1 extends AbstractMultiFileCommand {
+public class SHA1 extends AbstractHashCommand {
 
 	/**
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
@@ -50,32 +45,13 @@ public class SHA1 extends AbstractMultiFileCommand {
 		return "Computes SHA1 hash of the given file";
 	}
 
+
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
+	 * @see com.sangupta.andruil.commands.base.AbstractHashCommand#getAlgorithmName()
 	 */
 	@Override
-	protected boolean processFile(File file) throws IOException {
-		if(file.isDirectory()) {
-			return true;
-		}
-		
-		byte[] bytes = FileUtils.readFileToByteArray(file);
-		try {
-	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA1");
-	        byte[] array = md.digest(bytes);
-	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < array.length; ++i) {
-	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-	       }
-	        
-	        this.out.println(sb.toString() + " *" + file.getName());
-	    } catch (java.security.NoSuchAlgorithmException e) {
-	    	// do nothing
-	    	this.out.println("No SHA1 implementation available");
-	    	return false;
-	    }
-		
-		return true;
+	protected String getAlgorithmName() {
+		return "sha-1";
 	}
 
 }
