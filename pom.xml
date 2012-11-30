@@ -75,7 +75,7 @@
 		<dependency>
 			<groupId>com.sangupta</groupId>
 			<artifactId>jerry</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.0</version>
 		</dependency>
 	</dependencies>
 
