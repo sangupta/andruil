@@ -35,7 +35,7 @@ public class Volume extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "vol";
 	}
 
@@ -47,14 +47,11 @@ public class Volume extends AbstractCommand {
 		return "Displays the volume name";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		File file = new File("c:").getAbsoluteFile();
-		println(file.getName());
-		println(file.getAbsolutePath());
+		System.out.println(file.getName());
+		System.out.println(file.getAbsolutePath());
 	}
 	
 }

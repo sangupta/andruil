@@ -47,7 +47,7 @@ public class Cat extends AbstractMultiFileCommand {
 
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		while((line = reader.readLine()) != null) {
-			this.out.println(line);
+			System.out.println(line);
 		}
 		
 		reader.close();
@@ -66,7 +66,7 @@ public class Cat extends AbstractMultiFileCommand {
 	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "cat";
 	}
 

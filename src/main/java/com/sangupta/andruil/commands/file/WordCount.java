@@ -39,7 +39,7 @@ public class WordCount extends AbstractMultiFileCommand {
 	 */
 	@Override
 	protected void preProcess() {
-		this.out.println("NumLines MaxLineLength Words Bytes AbsoluteFilePath");
+		System.out.println("NumLines MaxLineLength Words Bytes AbsoluteFilePath");
 	}
 	
 
@@ -79,15 +79,15 @@ public class WordCount extends AbstractMultiFileCommand {
 			}
 		}
 		
-		this.out.print(lines);
-		this.out.print(" ");
-		this.out.print(maxLength);
-		this.out.print(" ");
-		this.out.print(words);
-		this.out.print(" ");
-		this.out.print(file.length());
-		this.out.print(" ");
-		this.out.println(file.getAbsoluteFile().getAbsolutePath());
+		System.out.print(lines);
+		System.out.print(" ");
+		System.out.print(maxLength);
+		System.out.print(" ");
+		System.out.print(words);
+		System.out.print(" ");
+		System.out.print(file.length());
+		System.out.print(" ");
+		System.out.println(file.getAbsoluteFile().getAbsolutePath());
 		
 		reader.close();
 		return true;
@@ -97,7 +97,7 @@ public class WordCount extends AbstractMultiFileCommand {
 	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "wc";
 	}
 

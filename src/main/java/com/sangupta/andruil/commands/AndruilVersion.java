@@ -32,22 +32,17 @@ import com.sangupta.andruil.support.Environment;
  */
 public class AndruilVersion extends AbstractCommand {
 
-	public String getCommandName() {
+	public String getName() {
 		return "me";
 	}
 
-	protected void execute(String[] args) {
-		println("");
-		println("Andruil - Java Command Shell");
-		println("by Sandeep Gupta - http://www.sangupta.com");
-		println("Version 0.0.1");
-		println("");
-		println("Andruil has been up for " + Environment.timeKeeper.uptime());
-	}
-
-	@Override
-	public String[] getCommandAlias() {
-		return null;
+	public void execute(String[] arguments) {
+		System.out.println("");
+		System.out.println("Andruil - Java Command Shell");
+		System.out.println("by Sandeep Gupta - http://www.sangupta.com");
+		System.out.println("Version 0.0.1");
+		System.out.println("");
+		System.out.println("Andruil has been up for " + Environment.timeKeeper.uptime());
 	}
 
 	@Override

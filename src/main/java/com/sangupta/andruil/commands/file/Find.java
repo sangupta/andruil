@@ -33,7 +33,7 @@ public class Find extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "find";
 	}
 
@@ -45,13 +45,9 @@ public class Find extends AbstractCommand {
 		return "Searches for a text string in a file or files";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		// TODO Auto-generated method stub
-
 	}
 
 }

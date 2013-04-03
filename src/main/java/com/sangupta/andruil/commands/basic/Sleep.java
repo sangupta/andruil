@@ -36,7 +36,7 @@ public class Sleep extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "sleep";
 	}
 
@@ -48,23 +48,25 @@ public class Sleep extends AbstractCommand {
 		return "Pause for NUMBER seconds.";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length != 1) {
-			this.out.println(this.getCommandName() + ": " + UnixErrorMessages.TOO_FEW_ARGUMENTS);
+			System.out.println(this.getName() + ": " + UnixErrorMessages.TOO_FEW_ARGUMENTS);
 			return;
 		}
 		
 		Long time = parseTimeInterval(args[0]);
 		if(time == null) {
-			this.out.println(this.getCommandName() + ": " + "invalid time interval '" + args[0] + "'");
+			System.out.println(this.getName() + ": " + "invalid time interval '" + args[0] + "'");
 			return;
 		}
 		
-		Thread.sleep(time * 1000);
+		try {
+			Thread.sleep(time * 1000);
+		} catch (InterruptedException e) {
+			// eat up
+			// TODO: need to think of it
+		}
 	}
 
 	/**

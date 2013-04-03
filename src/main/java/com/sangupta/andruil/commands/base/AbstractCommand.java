@@ -22,94 +22,21 @@
 package com.sangupta.andruil.commands.base;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
-import com.sangupta.andruil.Andruil;
-import com.sangupta.andruil.Command;
-import com.sangupta.andruil.Shell;
+import com.sangupta.husk.HuskShellCommand;
+import com.sangupta.husk.core.HuskShellContext;
+import com.sangupta.husk.core.HuskShellContextAware;
 
 /**
  * @author sangupta
  *
  */
-public abstract class AbstractCommand implements Command {
+public abstract class AbstractCommand implements HuskShellCommand, HuskShellContextAware {
 	
 	/**
-	 * Command's current output stream
+	 * Reference to the current shell context
 	 */
-	protected PrintWriter out = Shell.getOutStream();
-	
-	/**
-	 * @see com.sangupta.andruil.Command#getCommandName()
-	 */
-	@Override
-	public abstract String getCommandName();
-
-	/**
-	 * @see com.sangupta.andruil.Command#getHelpLine()
-	 */
-	@Override
-	public abstract String getHelpLine();
-
-	/**
-	 * @see com.sangupta.andruil.Command#getHelp()
-	 */
-	@Override
-	public String getHelp() {
-		return null;
-	}
-
-	/**
-	 * @see com.sangupta.andruil.Command#getCommandAlias()
-	 */
-	@Override
-	public String[] getCommandAlias() {
-		return null;
-	}
-
-	/**
-	 * @see com.sangupta.andruil.Command#run(java.lang.String[])
-	 */
-	@Override
-	public final void run(String[] args) {
-		try {
-			execute(args);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Print the given string to the output stream and flush it as well.
-	 * 
-	 * @param string
-	 */
-	public void print(String string) {
-		this.out.print(string);
-		this.out.flush();
-	}
-	
-	/**
-	 * Print the given string with a new line at the end to the output stream
-	 * and flush it as well.
-	 * 
-	 * @param string
-	 */
-	public void println(String string) {
-		this.out.println(string);
-		this.out.flush();
-	}
-	
-	protected String readLine(String prompt) {
-		try {
-			return Shell.getReader().readLine(prompt);
-		} catch(IOException e) {
-			
-		}
-		
-		return null;
-	}
+	protected HuskShellContext shellContext;
 	
 	/**
 	 * Return the current working directory of the shell.
@@ -117,7 +44,7 @@ public abstract class AbstractCommand implements Command {
 	 * @return
 	 */
 	public String getCurrentWorkingDirectory() {
-		return Andruil.getCurrentDirectory().getAbsolutePath();
+		return this.shellContext.getCurrentDirectory().getAbsolutePath();
 	}
 	
 	/**
@@ -131,12 +58,9 @@ public abstract class AbstractCommand implements Command {
 		return new File(getCurrentWorkingDirectory(), dirName);
 	}
 	
-	/**
-	 * Execute the command with the given arguments.
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
-	protected abstract void execute(String[] args) throws Exception;
+	@Override
+	public void setShellContext(HuskShellContext shellContext) {
+		this.shellContext = shellContext;
+	}
 
 }

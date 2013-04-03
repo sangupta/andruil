@@ -38,7 +38,7 @@ public class Hostname extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "hostname";
 	}
 
@@ -50,17 +50,14 @@ public class Hostname extends AbstractCommand {
 		return "Prints the name of the current host.";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		try {
 			InetAddress addr = InetAddress.getLocalHost();
 			String hostname = addr.getHostName();
-			println(hostname);
+			System.out.println(hostname);
 		} catch (UnknownHostException e) {
-			println("Unable to detect hostname.");
+			System.out.println("Unable to detect hostname.");
 		}
 	}
 

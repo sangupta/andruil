@@ -21,15 +21,8 @@
 
 package com.sangupta.andruil;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import jline.console.completer.StringsCompleter;
-
-import com.sangupta.andruil.completer.ExtendedFileNameCompleter;
 import com.sangupta.andruil.support.Environment;
+import com.sangupta.husk.HuskShell;
 
 /**
  * Main entry point for the shell.
@@ -38,8 +31,6 @@ import com.sangupta.andruil.support.Environment;
  *
  */
 public class Andruil {
-	
-	private static File currentWorkingDirectory = new File(".").getAbsoluteFile().getParentFile();
 	
 	/**
 	 * Main entry point from Operating system.
@@ -54,86 +45,37 @@ public class Andruil {
 		// TODO: we need to read the command line arguments to this shell
 		// this may provide customization options etc.
 		
+		// create the context
 		// start the shell
-		Andruil andruil = new Andruil();
-		andruil.startShell();
+		// Create the shell instance
+		HuskShell huskShell = new HuskShell();
+
+		AndruilPromptProvider promptProvider = new AndruilPromptProvider(huskShell.getCurrentShellContext());
+		
+		
+		// prepare for launch
+		huskShell.initialize();
+
+		huskShell.setPromptProvider(promptProvider);
+		huskShell.setExitCommandNames("exit");
+		huskShell.setHelpCommandNames("help");
+		huskShell.loadExternalCommands("com.sangupta.andruil.commands");
+		
+		// start the shell instance
+		try {
+			huskShell.start();
+		} catch(Throwable t) {
+			t.printStackTrace();
+		}
+		
+		// stop and destroy all resources associated with the shell
+		huskShell.stop();
 		
 		// when we are done
 		// make an exit
 		Environment.timeKeeper.close();
 		System.out.print("\n\n");
 		System.out.println(Environment.timeKeeper);
-	}
-	
-	/**
-	 * Build and start the shell
-	 */
-	private void startShell() throws Exception {
-		// prepare the shell
-		updatePromptText();
-		
-		// add the filename completer
-		Shell.addCompleter(new ExtendedFileNameCompleter());
-		
-		// build up the list of commands
-		List<String> commandNames = new ArrayList<String>();
-		for(Command command : CommandExecutor.getCommands()) {
-			String name = command.getCommandName();
-			if(name != null && !name.trim().equals("")) {
-				commandNames.add(name);
-			}
-		}
-		Shell.addCompleter(new StringsCompleter(commandNames));
-		
-		// start the shell
-		Shell.run();
-	}
-	
-	/**
-	 * Updates the prompt text to the current directory that the user is in.
-	 * 
-	 */
-	private static void updatePromptText() {
-		File file = getCurrentDirectory();
-		if(file == null) {
-			return; 
-		}
-		
-		String prompt;
-		if(file.isDirectory()) {
-			prompt = file.getAbsolutePath() + " $ ";
-		} else {
-			prompt = file.getParentFile().getAbsolutePath() + " $ ";
-		}
-		
-		Shell.setPrompt(prompt);
-	}
-
-	/**
-	 * Get current working directory
-	 *  
-	 * @return
-	 */
-	public static File getCurrentDirectory() {
-		return currentWorkingDirectory;
-	}
-
-	/**
-	 * Change current working directory for the user.
-	 * 
-	 * @param file
-	 */
-	public static void changeCurrentDirectory(File file) {
-		if(file != null && file.exists() && file.isDirectory()) {
-			String path;
-			try {
-				path = file.getCanonicalPath();
-			} catch(IOException e) {
-				path = file.getAbsolutePath();
-			}
-			currentWorkingDirectory = new File(path);
-			updatePromptText();
-		}
 	}
 
 }

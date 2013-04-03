@@ -38,13 +38,8 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
 public class Type extends AbstractCommand {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "type";
-	}
-
-	@Override
-	public String[] getCommandAlias() {
-		return null;
 	}
 
 	@Override
@@ -53,21 +48,21 @@ public class Type extends AbstractCommand {
 	}
 
 	@Override
-	protected void execute(String[] args) {
+	public void execute(String[] args) {
 		if(args.length == 0) {
-			this.out.println("The syntax of the command is incorrect.");
+			System.out.println("The syntax of the command is incorrect.");
 			return;
 		}
 		
 		String dirName = args[0];
 		File file = resolveFile(dirName);
 		if(!file.exists()) {
-			this.out.println("The system cannot find the file specified.");
+			System.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(file.isDirectory()) {
-			this.out.println("Access is denied.");
+			System.out.println("Access is denied.");
 			return;
 		}
 		

@@ -40,39 +40,46 @@ public abstract class AbstractMultiFileCommand extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.base.AbstractCommand#execute(java.lang.String[])
 	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		preProcess();
 		
 		if(args.length == 0) {
-			this.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
+			System.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
 			return;
 		}
 		
 		// read a list of all files that need to be worked upon
 		for(String arg : args) {
-			File[] files = ArgumentUtils.resolveFiles(arg);
+			File[] files = ArgumentUtils.resolveFiles(this.shellContext.getCurrentDirectory(), arg);
 		
 			if(files == null) {
-				this.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
+				System.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
 				return;
 			}
 			
 			if(files.length == 1) {
 				File file = files[0];
 				if(!file.exists()) {
-					this.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
+					System.out.println(WindowsErrorMessages.FILE_NOT_FOUND);
 					return;
 				}
 				
 				if(file.isDirectory()) {
-					this.out.println(WindowsErrorMessages.FILE_IS_A_FOLDER);
+					System.out.println(WindowsErrorMessages.FILE_IS_A_FOLDER);
 					return;
 				}
 			}
 			
 			boolean cont = true;
 			for(File file : files) {
-				cont = processFile(file);
+				
+				try {
+					cont = processFile(file);
+				} catch(IOException e) {
+					// unable to process file
+					e.printStackTrace();
+				}
+				
 				if(!cont) {
 					break;
 				}

@@ -33,7 +33,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
 public class GarbageCollection extends AbstractCommand {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "gc";
 	}
 
@@ -43,11 +43,11 @@ public class GarbageCollection extends AbstractCommand {
 	}
 
 	@Override
-	protected void execute(String[] args) throws Exception {
-		println("Running finalization...");
+	public void execute(String[] args) {
+		System.out.println("Running finalization...");
 		Runtime.getRuntime().runFinalization();
 		
-		println("Requesting garbage collection...");
+		System.out.println("Requesting garbage collection...");
 		System.gc();
 	}
 

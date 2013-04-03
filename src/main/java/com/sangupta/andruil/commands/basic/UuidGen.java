@@ -37,7 +37,7 @@ public class UuidGen extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "uuidgen";
 	}
 
@@ -49,11 +49,8 @@ public class UuidGen extends AbstractCommand {
 		return "Generates a new universally unique identifier (UUID)";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		UUID uuid = UUID.randomUUID();
 		System.out.println(uuid.toString());
 	}

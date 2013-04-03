@@ -93,20 +93,20 @@ public class ArgumentUtils {
 	 * @param arg
 	 * @return
 	 */
-	public static File[] resolveFiles(String arg) {
+	public static File[] resolveFiles(final File currentDir, String arg) {
 		if(arg == null) {
 			return null;
 		}
 		
 		if(!hasWildcards(arg)) {
-			File file = new File(Andruil.getCurrentDirectory().getAbsoluteFile(), arg);
+			File file = new File(currentDir, arg);
 			return new File[] { file };
 		}
 		
 		// the argument does have wild cards
 		// resolve it
 		FileFilter wildcardFileFilter = new WildcardFileFilter(arg, IOCase.SYSTEM);
-		File[] files = Andruil.getCurrentDirectory().listFiles(wildcardFileFilter);
+		File[] files = currentDir.listFiles(wildcardFileFilter);
 		return files;
 	}
 }

@@ -43,7 +43,7 @@ public class Headers extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "headers";
 	}
 
@@ -55,13 +55,10 @@ public class Headers extends AbstractCommand {
 		return "Display response headers for the given URL";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length == 0) {
-			this.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
+			System.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
 			return;			
 		}
 		
@@ -107,8 +104,8 @@ public class Headers extends AbstractCommand {
 								isRedirect = true;
 								
 								url = header.getValue();
-								this.out.print("\n--- ");
-								this.out.println("Redirected to: " + url);
+								System.out.print("\n--- ");
+								System.out.println("Redirected to: " + url);
 								break;
 							}
 						}
@@ -123,12 +120,12 @@ public class Headers extends AbstractCommand {
 	 */
 	private void outputHeaders(Map<String, String> headers) {
 		if(AssertUtils.isEmpty(headers)) {
-			this.out.println("No response headers.");
+			System.out.println("No response headers.");
 			return;
 		}
 		
 		for(Entry<String, String> header : headers.entrySet()) {
-			this.out.println(header.getKey() + ": " + header.getValue());
+			System.out.println(header.getKey() + ": " + header.getValue());
 		}		
 	}
 

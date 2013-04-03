@@ -22,6 +22,7 @@
 package com.sangupta.andruil.commands.file;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
@@ -38,7 +39,7 @@ public class FileCompare extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "fc";
 	}
 
@@ -50,13 +51,10 @@ public class FileCompare extends AbstractCommand {
 		return "Compares two given files";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length != 2) {
-			this.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
+			System.out.println(WindowsErrorMessages.INCORRECT_SYNTAX);
 			return;
 		}
 
@@ -64,32 +62,39 @@ public class FileCompare extends AbstractCommand {
 		File file2 = new File(args[1]);
 		
 		if(!file1.exists()) {
-			this.out.println("FC: Cannot open " + file1.getName() + " - No such file");
+			System.out.println("FC: Cannot open " + file1.getName() + " - No such file");
 			return;
 		}
 		
 		if(!file2.exists()) {
-			this.out.println("FC: Cannot open " + file2.getName() + " - No such file");
+			System.out.println("FC: Cannot open " + file2.getName() + " - No such file");
 			return;
 		}
 		
 		if(!file1.isFile()) {
-			this.out.println("FC: " + file1.getName() + " is a folder");
+			System.out.println("FC: " + file1.getName() + " is a folder");
 			return;
 		}
 
 		if(!file2.isFile()) {
-			this.out.println("FC: " + file2.getName() + " is a folder");
+			System.out.println("FC: " + file2.getName() + " is a folder");
 			return;
 		}
 		
-		boolean equals = FileUtils.contentEquals(file1, file2);
+		boolean equals = false;
+		try {
+			equals = FileUtils.contentEquals(file1, file2);
+		} catch (IOException e) {
+			// TODO: fix this
+			// eat up and assume we could not compare
+		}
+		
 		if(equals) {
-			this.out.println("Files are identical");
+			System.out.println("Files are identical");
 			return;
 		}
 		
-		this.out.println("Files are not identical");
+		System.out.println("Files are not identical");
 	}
 
 }

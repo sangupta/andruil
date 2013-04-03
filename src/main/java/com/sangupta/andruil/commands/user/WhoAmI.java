@@ -30,17 +30,13 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  */
 public class WhoAmI extends AbstractCommand {
 
-	public String getCommandName() {
+	public String getName() {
 		return "whoami";
 	}
 
-	protected void execute(String[] args) {
-		System.out.println(System.getProperty("user.name"));
-	}
-
 	@Override
-	public String[] getCommandAlias() {
-		return null;
+	public void execute(String[] args) {
+		System.out.println(System.getProperty("user.name"));
 	}
 
 	@Override

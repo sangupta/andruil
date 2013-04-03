@@ -21,7 +21,6 @@
 
 package com.sangupta.andruil.commands;
 
-import com.sangupta.andruil.Shell;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
@@ -31,18 +30,13 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  */
 public class ClearScreen extends AbstractCommand {
 	
-	public String getCommandName() {
+	public String getName() {
 		return "cls";
 	}
 
-	protected void execute(String[] args) {
-		Shell.clearScreen();
-	}
-
 	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "clear" };
-		return values;
+	public void execute(String[] args) {
+		// Shell.clearScreen();
 	}
 
 	@Override

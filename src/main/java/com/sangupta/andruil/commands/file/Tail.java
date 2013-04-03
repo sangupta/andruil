@@ -38,7 +38,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
 public class Tail extends AbstractCommand {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "tail";
 	}
 
@@ -48,24 +48,29 @@ public class Tail extends AbstractCommand {
 	}
 	
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length == 0) {
-			println("No file specified.");
+			System.out.println("No file specified.");
 			return;
 		}
 		
 		File file = resolveFile(args[0]);
 		if(!file.exists()) {
-			println("File does not exists.");
+			System.out.println("File does not exists.");
 			return;
 		}
 		
 		if(file.isDirectory()) {
-			println("File is a directory.");
+			System.out.println("File is a directory.");
 			return;
 		}
 		
-		tail(file, 10, 1);
+		try {
+			tail(file, 10, 1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -96,15 +101,15 @@ public class Tail extends AbstractCommand {
 			// output the array
 			if(!arrayFull || currentIndex == 0) {
 				for(int index = 0; index < numLines; index++) {
-					println(lines[index]);
+					System.out.println(lines[index]);
 				}
 			} else {
 				// print the rotated array
 				for(int index = currentIndex + 1; index < numLines; index++) {
-					println(lines[index]);
+					System.out.println(lines[index]);
 				}
 				for(int index = 0; index < currentIndex; index++) {
-					println(lines[index]);
+					System.out.println(lines[index]);
 				}
 			}
 
@@ -123,7 +128,7 @@ public class Tail extends AbstractCommand {
 			
 			// output new lines
 			while((line = reader.readLine()) != null) {
-				println(line);
+				System.out.println(line);
 			}
 		} while(true);
 		

@@ -23,7 +23,6 @@ package com.sangupta.andruil.commands.folder;
 
 import java.io.File;
 
-import com.sangupta.andruil.Andruil;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
@@ -33,9 +32,9 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  *
  */
 public class ChangeDirectory extends AbstractCommand {
-
+	
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "cd";
 	}
 
@@ -45,9 +44,9 @@ public class ChangeDirectory extends AbstractCommand {
 	}
 
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length == 0) {
-			this.out.println(getCurrentWorkingDirectory());
+			System.out.println(getCurrentWorkingDirectory());
 			return;
 		}
 		
@@ -72,16 +71,16 @@ public class ChangeDirectory extends AbstractCommand {
 		}
 		
 		if(!dir.exists()) {
-			this.out.println("The system cannot find the file specified.");
+			System.out.println("The system cannot find the file specified.");
 			return;
 		}
 		
 		if(!dir.isDirectory()) {
-			this.out.println("Access is denied.");
+			System.out.println("Access is denied.");
 			return;
 		}
 		
-		Andruil.changeCurrentDirectory(dir);
+		this.shellContext.changeCurrentDirectory(dir);
 	}
 
 }

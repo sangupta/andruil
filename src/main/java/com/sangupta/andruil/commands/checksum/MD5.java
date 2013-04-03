@@ -26,18 +26,18 @@ import com.sangupta.andruil.commands.base.AbstractHashCommand;
 public class MD5 extends AbstractHashCommand {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "md5";
 	}
 	
-	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandAlias()
-	 */
-	@Override
-	public String[] getCommandAlias() {
-		return new String[] { "md5sum" };
-	}
-
+//	/**
+//	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandAlias()
+//	 */
+//	@Override
+//	public String[] getCommandAlias() {
+//		return new String[] { "md5sum" };
+//	}
+//
 	@Override
 	public String getHelpLine() {
 		return "Computes MD5 hash of the given file.";

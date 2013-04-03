@@ -39,7 +39,7 @@ public class Crc32 extends AbstractMultiFileCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "crc32";
 	}
 
@@ -63,7 +63,7 @@ public class Crc32 extends AbstractMultiFileCommand {
 		byte[] bytes = FileUtils.readFileToByteArray(file);
 		CRC32 crc32 = new CRC32();
 		crc32.update(bytes);
-		this.out.println(Long.toHexString(crc32.getValue()) + " *" + file.getName());
+		System.out.println(Long.toHexString(crc32.getValue()) + " *" + file.getName());
 		
 		return true;
 	}

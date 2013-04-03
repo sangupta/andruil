@@ -36,7 +36,7 @@ public class Version extends AbstractCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "ver";
 	}
 
@@ -48,12 +48,8 @@ public class Version extends AbstractCommand {
 		return "Display the OS version";
 	}
 
-	/**
-	 * 
-	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		String osName = System.getProperty("os.name");
 		String osVersion = System.getProperty("os.version");
 		

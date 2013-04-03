@@ -33,7 +33,7 @@ public class SHA256 extends AbstractHashCommand {
 	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "sha256";
 	}
 

@@ -58,10 +58,10 @@ public abstract class AbstractHashCommand extends AbstractMultiFileCommand {
 	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
 	       }
 	        
-	        this.out.println(sb.toString() + " *" + file.getName());
+	        System.out.println(sb.toString() + " *" + file.getName());
 	    } catch (java.security.NoSuchAlgorithmException e) {
 	    	// do nothing
-	    	this.out.println("No " + getAlgorithmName() + " implementation available");
+	    	System.out.println("No " + getAlgorithmName() + " implementation available");
 	    	return false;
 	    }
 		

@@ -35,13 +35,13 @@ public class DateCommand extends AbstractCommand {
 	/**
 	 * The date format to be used
 	 */
-	private static final String DATE_FORMAT = "dd-MM-yyyy";
+	private final String DATE_FORMAT = "dd-MM-yyyy";
 
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "date";
 	}
 
@@ -53,17 +53,14 @@ public class DateCommand extends AbstractCommand {
 		return "Display or sets the current system date";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length == 0) {
 			display(true);
 			ask();
 		} else {
 			if(args.length > 1) {
-				this.out.println("The system cannot accept the date entered.");
+				System.out.println("The system cannot accept the date entered.");
 				ask();
 			} else {
 				if("/t".equalsIgnoreCase(args[0])) {
@@ -79,19 +76,19 @@ public class DateCommand extends AbstractCommand {
 	 */
 	private void display(boolean showPrompt) {
 		if(showPrompt) {
-			this.out.print("The current date is: ");
+			System.out.println("The current date is: ");
 		}
 		
 		Date current = new Date();
 		String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(current);
-		this.out.println(formattedDate);
+		System.out.println(formattedDate);
 	}
 	
 	/**
 	 * Ask the user for the current date
 	 */
 	private void ask() {
-		this.out.println("Andruil: Not yet implemented");
+		System.out.println("Andruil: Not yet implemented");
 		
 		
 //		final String date = this.readLine("Enter the new date: (" + DATE_FORMAT + ") ");

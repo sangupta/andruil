@@ -35,19 +35,10 @@ public class CreateDirectory extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "mkdir";
 	}
 	
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandAlias()
-	 */
-	@Override
-	public String[] getCommandAlias() {
-		String[] values = { "md" };
-		return values;
-	}
-
 	/**
 	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
 	 */
@@ -56,19 +47,8 @@ public class CreateDirectory extends AbstractCommand {
 		return "Creates a directory.";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelp()
-	 */
 	@Override
-	public String getHelp() {
-		return null;
-	}
-
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
-	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		if(args.length == 0) {
 			System.out.println("The syntax of the command is incorrect.");
 			return;

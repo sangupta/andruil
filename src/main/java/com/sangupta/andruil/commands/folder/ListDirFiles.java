@@ -35,7 +35,7 @@ public class ListDirFiles extends AbstractCommand {
 	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
 	 */
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "ls";
 	}
 
@@ -47,17 +47,14 @@ public class ListDirFiles extends AbstractCommand {
 		return "List files in the given folder.";
 	}
 
-	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#execute(java.lang.String[])
-	 */
 	@Override
-	protected void execute(String[] args) throws Exception {
+	public void execute(String[] args) {
 		File curDir = new File(getCurrentWorkingDirectory());
 		String[] filesAndFolders = curDir.list();
 		
 		if(filesAndFolders != null && filesAndFolders.length > 0) {
 			for(String name : filesAndFolders) {
-				this.out.println(name);
+				System.out.println(name);
 			}
 		}
 	}
