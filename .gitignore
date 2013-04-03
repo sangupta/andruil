@@ -31,3 +31,4 @@ desktop.ini
 andruil.jar
 target/*
 build/*.zip
+logs/*

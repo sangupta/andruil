@@ -74,6 +74,16 @@
 			<version>0.9.8</version>
 		</dependency>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.0.7</version>
+		</dependency>
+		<dependency>
 			<groupId>com.sangupta</groupId>
 			<artifactId>jerry</artifactId>
 			<version>0.3.2</version>
