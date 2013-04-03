@@ -57,6 +57,7 @@ public class Andruil {
 		huskShell.initialize();
 
 		huskShell.setPromptProvider(promptProvider);
+		huskShell.setTitle("Andruil Shell");
 		huskShell.setExitCommandNames("exit");
 		huskShell.setHelpCommandNames("help");
 		huskShell.loadExternalCommands("com.sangupta.andruil.commands");
