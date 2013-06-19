@@ -52,7 +52,6 @@ public class Andruil {
 
 		AndruilPromptProvider promptProvider = new AndruilPromptProvider(huskShell.getCurrentShellContext());
 		
-		
 		// prepare for launch
 		huskShell.initialize();
 
