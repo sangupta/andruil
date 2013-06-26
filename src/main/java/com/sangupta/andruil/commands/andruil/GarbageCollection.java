@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.andruil.commands.basic;
+package com.sangupta.andruil.commands.andruil;
 
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
