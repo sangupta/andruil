@@ -42,7 +42,7 @@ public class SHA384 extends AbstractHashCommand {
 	 */
 	@Override
 	public String getHelpLine() {
-		return "Computes SHA1 hash of the given file";
+		return "Computes SHA384 hash of the given file";
 	}
 
 

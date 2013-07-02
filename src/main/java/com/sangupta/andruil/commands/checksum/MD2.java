@@ -32,7 +32,7 @@ public class MD2 extends AbstractHashCommand {
 	
 	@Override
 	public String getHelpLine() {
-		return "Computes MD5 hash of the given file.";
+		return "Computes MD2 hash of the given file.";
 	}
 
 	/**
