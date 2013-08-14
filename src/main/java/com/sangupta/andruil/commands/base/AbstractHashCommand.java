@@ -67,5 +67,5 @@ public abstract class AbstractHashCommand extends AbstractMultiFileCommand {
 		
 		return true;
 	}
-
+	
 }
