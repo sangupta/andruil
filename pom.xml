@@ -114,28 +114,30 @@
 			</plugin>
 			
 			<!-- Create an all run JAR -->
-			<plugin>
+					    <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.0</version>
 				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>com.sangupta.andruil.Andruil</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
+					<!-- put your configurations here -->
 				</configuration>
-	            <executions>
+				<executions>
 					<execution>
 						<phase>package</phase>
 						<goals>
-							<goal>single</goal>
+							<goal>shade</goal>
 						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.sangupta.andruil.Andruil</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
 					</execution>
-		        </executions>
+				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 

@@ -32,3 +32,4 @@ andruil.jar
 target/*
 build/*.zip
 logs/*
+/target
