@@ -66,6 +66,10 @@ public class ChangeDirectory extends AbstractCommand {
 			dir = new File("/");
 		}
 		
+		if("~".equals(dirName)) {
+			dir = new File(System.getProperty("user.home"));
+		}
+		
 		if(dir == null) {
 			dir = resolveFile(dirName);
 		}
