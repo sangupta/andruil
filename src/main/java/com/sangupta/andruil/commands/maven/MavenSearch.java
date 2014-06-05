@@ -14,7 +14,7 @@ public class MavenSearch extends AbstractCommand {
 
 	@Override
 	public String getName() {
-		return "maven-search";
+		return "mvn-search";
 	}
 
 	@Override
@@ -46,21 +46,21 @@ public class MavenSearch extends AbstractCommand {
 		System.out.print("Total results found: " + results.response.numFound);
 		System.out.println("; starting at: " + results.response.start);
 		
-		Date d = new Date();
+		Date date = new Date();
 		int count = 0;
-		for(Doc doc : results.response.docs) {
-			System.out.print((++count) + ": " + doc.g + ":" + doc.a + ":" + doc.latestVersion + ", All(" + doc.versionCount + "); ");
-			d.setTime(doc.timestamp);
-			System.out.print(d.toString());
+		for(Doc document : results.response.docs) {
+			System.out.print((++count) + ": " + document.g + ":" + document.a + ":" + document.latestVersion + ", All(" + document.versionCount + "); ");
+			date.setTime(document.timestamp);
+			System.out.print(date.toString());
 			
-			if(AssertUtils.isNotEmpty(doc.ec)) {
+			if(AssertUtils.isNotEmpty(document.ec)) {
 				System.out.print("; ");
-				for(String ec : doc.ec) {
+				for(String ec : document.ec) {
 					System.out.print(ec.substring(1) + " ");
 				}
 			}
 			
-			System.out.println("");
+			System.out.println();
 		}
 	}
 	
