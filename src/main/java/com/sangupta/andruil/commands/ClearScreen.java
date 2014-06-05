@@ -36,7 +36,7 @@ public class ClearScreen extends AbstractCommand {
 
 	@Override
 	public void execute(String[] args) {
-		// Shell.clearScreen();
+		this.shellContext.getConsole().clearScreen();
 	}
 
 	@Override
