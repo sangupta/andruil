@@ -24,25 +24,40 @@ package com.sangupta.andruil.commands;
 import com.sangupta.andruil.commands.base.AbstractCommand;
 
 /**
- * Clear the entire screen.
+ * Change the title of the shell window.
  * 
  * @author sangupta
  *
  */
-public class ClearScreen extends AbstractCommand {
-	
-	public String getName() {
-		return "cls";
-	}
+public class ShellTitle extends AbstractCommand {
 
 	@Override
-	public void execute(String[] args) {
-		this.shellContext.getConsole().clearScreen();
+	public String getName() {
+		return "title";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Clear the console";
+		return "Change the title of the shell window";
+	}
+
+	@Override
+	public void execute(String[] arguments) {
+		if(arguments.length == 0) {
+			return;
+		}
+		
+		if(arguments.length == 1) {
+			this.shellContext.getConsole().setWindowTitle(arguments[0]);
+		}
+		
+		StringBuilder builder = new StringBuilder();
+		for(String arg : arguments) {
+			builder.append(arg);
+			builder.append(' ');
+		}
+		
+		this.shellContext.getConsole().setWindowTitle(builder.toString().trim());
 	}
 
 }
