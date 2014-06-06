@@ -30,7 +30,7 @@ import com.sangupta.andruil.commands.base.AbstractHashCommand;
 public class SHA384 extends AbstractHashCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -38,7 +38,7 @@ public class SHA384 extends AbstractHashCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

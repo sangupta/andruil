@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.basic;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Output the OS version. Any arguments passed to the command
@@ -30,10 +30,10 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class Version extends AbstractCommand {
+public class Version extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -41,7 +41,7 @@ public class Version extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

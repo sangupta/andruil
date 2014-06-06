@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.jerry.util.CryptoUtil;
 
-public class UniqueLines extends AbstractCommand {
+public class UniqueLines extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

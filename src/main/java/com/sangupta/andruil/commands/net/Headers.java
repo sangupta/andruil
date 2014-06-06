@@ -24,7 +24,7 @@ package com.sangupta.andruil.commands.net;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.andruil.constants.WindowsErrorMessages;
 import com.sangupta.jerry.http.WebInvoker;
 import com.sangupta.jerry.http.WebResponse;
@@ -37,10 +37,10 @@ import com.sangupta.jerry.util.UriUtils;
  * @author sangupta
  *
  */
-public class Headers extends AbstractCommand {
+public class Headers extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -48,7 +48,7 @@ public class Headers extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

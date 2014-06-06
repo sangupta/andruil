@@ -23,7 +23,7 @@ package com.sangupta.andruil.commands.folder;
 
 import java.io.File;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Change the current working directory
@@ -31,7 +31,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class ChangeDirectory extends AbstractCommand {
+public class ChangeDirectory extends AbstractAndruilCommand {
 	
 	@Override
 	public String getName() {

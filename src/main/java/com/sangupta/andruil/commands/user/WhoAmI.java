@@ -21,14 +21,14 @@
 
 package com.sangupta.andruil.commands.user;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * 
  * @author sangupta
  *
  */
-public class WhoAmI extends AbstractCommand {
+public class WhoAmI extends AbstractAndruilCommand {
 
 	public String getName() {
 		return "whoami";

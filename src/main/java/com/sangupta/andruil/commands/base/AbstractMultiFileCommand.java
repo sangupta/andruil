@@ -34,10 +34,10 @@ import com.sangupta.andruil.utils.ArgumentUtils;
  * @author sangupta
  *
  */
-public abstract class AbstractMultiFileCommand extends AbstractCommand {
+public abstract class AbstractMultiFileCommand extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#execute(java.lang.String[])
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#execute(java.lang.String[])
 	 */
 	@Override
 	public void execute(String[] args) {

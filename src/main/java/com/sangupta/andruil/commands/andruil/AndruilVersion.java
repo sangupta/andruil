@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.andruil;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.andruil.support.Environment;
 
 /**
@@ -30,7 +30,7 @@ import com.sangupta.andruil.support.Environment;
  * @author sangupta
  *
  */
-public class AndruilVersion extends AbstractCommand {
+public class AndruilVersion extends AbstractAndruilCommand {
 
 	public String getName() {
 		return "me";

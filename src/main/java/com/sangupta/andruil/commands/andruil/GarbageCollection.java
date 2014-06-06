@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.andruil;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Runs the java garbage collector as well as finalization. This
@@ -30,7 +30,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class GarbageCollection extends AbstractCommand {
+public class GarbageCollection extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

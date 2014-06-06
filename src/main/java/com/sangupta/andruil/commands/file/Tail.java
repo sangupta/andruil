@@ -28,14 +28,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * 
  * @author sangupta
  *
  */
-public class Tail extends AbstractCommand {
+public class Tail extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

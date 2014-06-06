@@ -1,8 +1,8 @@
 package com.sangupta.andruil.commands.andruil;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
-public class MemoryUsage extends AbstractCommand {
+public class MemoryUsage extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

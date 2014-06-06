@@ -1,9 +1,9 @@
 package com.sangupta.andruil.commands.encode;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.jerry.util.ConsoleUtils;
 
-public class Base64 extends AbstractCommand {
+public class Base64 extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

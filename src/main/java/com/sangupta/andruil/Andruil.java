@@ -48,8 +48,8 @@ public class Andruil {
 		// create the context
 		// start the shell
 		// Create the shell instance
-		HuskShell huskShell = new HuskShell();
-
+		HuskShell huskShell = new HuskShell(25, 120);
+		
 		AndruilPromptProvider promptProvider = new AndruilPromptProvider(huskShell.getCurrentShellContext());
 		
 		// prepare for launch

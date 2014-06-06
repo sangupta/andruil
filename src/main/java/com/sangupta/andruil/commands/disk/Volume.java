@@ -23,16 +23,16 @@ package com.sangupta.andruil.commands.disk;
 
 import java.io.File;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * @author sangupta
  *
  */
-public class Volume extends AbstractCommand {
+public class Volume extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -40,7 +40,7 @@ public class Volume extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

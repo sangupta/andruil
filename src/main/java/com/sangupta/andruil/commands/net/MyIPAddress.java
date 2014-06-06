@@ -27,7 +27,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Display the current IP address of the machine.
@@ -35,7 +35,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class MyIPAddress extends AbstractCommand {
+public class MyIPAddress extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

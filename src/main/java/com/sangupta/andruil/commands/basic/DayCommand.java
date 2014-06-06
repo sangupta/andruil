@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.jerry.util.AssertUtils;
 import com.sangupta.jerry.util.ConsoleUtils;
 
@@ -15,7 +15,7 @@ import com.sangupta.jerry.util.ConsoleUtils;
  * @author sangupta
  *
  */
-public class DayCommand extends AbstractCommand {
+public class DayCommand extends AbstractAndruilCommand {
 	
 	private final String[] WEEKDAYS = { "Saturday", "Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday"};
 

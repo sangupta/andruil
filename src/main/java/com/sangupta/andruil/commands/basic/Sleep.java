@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.basic;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.andruil.constants.UnixErrorMessages;
 
 /**
@@ -30,10 +30,10 @@ import com.sangupta.andruil.constants.UnixErrorMessages;
  * @author sangupta
  *
  */
-public class Sleep extends AbstractCommand {
+public class Sleep extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -41,7 +41,7 @@ public class Sleep extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

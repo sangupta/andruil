@@ -24,18 +24,18 @@ package com.sangupta.andruil.commands.net;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * @author sangupta
  * 
  */
-public class Hostname extends AbstractCommand {
+public class Hostname extends AbstractAndruilCommand {
 
 	/**
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -43,7 +43,7 @@ public class Hostname extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

@@ -21,16 +21,16 @@
 
 package com.sangupta.andruil.commands.file;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * @author sangupta
  *
  */
-public class Find extends AbstractCommand {
+public class Find extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -38,7 +38,7 @@ public class Find extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

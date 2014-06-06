@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Display the contents of a text file
@@ -35,7 +35,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class Type extends AbstractCommand {
+public class Type extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

@@ -26,17 +26,17 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.andruil.constants.WindowsErrorMessages;
 
 /**
  * @author sangupta
  *
  */
-public class FileCompare extends AbstractCommand {
+public class FileCompare extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -44,7 +44,7 @@ public class FileCompare extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

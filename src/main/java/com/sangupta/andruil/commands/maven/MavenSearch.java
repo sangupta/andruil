@@ -24,7 +24,7 @@ package com.sangupta.andruil.commands.maven;
 import java.util.Date;
 import java.util.List;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.jerry.http.WebInvoker;
 import com.sangupta.jerry.util.AssertUtils;
 import com.sangupta.jerry.util.ConsoleUtils;
@@ -37,7 +37,7 @@ import com.sangupta.jerry.util.UriUtils;
  * @author sangupta
  *
  */
-public class MavenSearch extends AbstractCommand {
+public class MavenSearch extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {

@@ -24,13 +24,13 @@ package com.sangupta.andruil.commands.basic;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * @author sangupta
  *
  */
-public class DateCommand extends AbstractCommand {
+public class DateCommand extends AbstractAndruilCommand {
 
 	/**
 	 * The date format to be used
@@ -38,7 +38,7 @@ public class DateCommand extends AbstractCommand {
 	private final String DATE_FORMAT = "dd-MM-yyyy";
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -46,7 +46,7 @@ public class DateCommand extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.command.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.AbstractAndruilCommand.AbstractCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

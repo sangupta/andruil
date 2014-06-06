@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Clear the entire screen.
@@ -29,7 +29,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class ClearScreen extends AbstractCommand {
+public class ClearScreen extends AbstractAndruilCommand {
 	
 	public String getName() {
 		return "cls";

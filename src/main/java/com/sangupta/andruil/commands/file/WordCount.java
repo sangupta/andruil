@@ -94,7 +94,7 @@ public class WordCount extends AbstractMultiFileCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -102,7 +102,7 @@ public class WordCount extends AbstractMultiFileCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

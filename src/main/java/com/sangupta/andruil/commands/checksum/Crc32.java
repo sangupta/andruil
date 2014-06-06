@@ -36,7 +36,7 @@ import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 public class Crc32 extends AbstractMultiFileCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -44,7 +44,7 @@ public class Crc32 extends AbstractMultiFileCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {
@@ -52,7 +52,7 @@ public class Crc32 extends AbstractMultiFileCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.AbstractCommand#execute(java.lang.String[])
+	 * @see com.sangupta.andruil.commands.AbstractAndruilCommand#execute(java.lang.String[])
 	 */
 	@Override
 	protected boolean processFile(File file) throws IOException {

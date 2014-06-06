@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
-public class Combine extends AbstractCommand {
+public class Combine extends AbstractAndruilCommand {
 
 	@Override
 	public void execute(String[] args) {

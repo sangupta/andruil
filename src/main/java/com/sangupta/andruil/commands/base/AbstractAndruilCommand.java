@@ -35,7 +35,7 @@ import com.sangupta.husk.core.HuskShellContextAware;
  * @author sangupta
  *
  */
-public abstract class AbstractCommand implements HuskShellCommand, HuskShellContextAware {
+public abstract class AbstractAndruilCommand implements HuskShellCommand, HuskShellContextAware {
 	
 	/**
 	 * Reference to the current shell context

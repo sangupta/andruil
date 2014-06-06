@@ -23,7 +23,7 @@ package com.sangupta.andruil.commands.basic;
 
 import java.util.UUID;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Generate a new UUID.
@@ -31,10 +31,10 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class UuidGen extends AbstractCommand {
+public class UuidGen extends AbstractAndruilCommand {
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getCommandName()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getCommandName()
 	 */
 	@Override
 	public String getName() {
@@ -42,7 +42,7 @@ public class UuidGen extends AbstractCommand {
 	}
 
 	/**
-	 * @see com.sangupta.andruil.commands.base.AbstractCommand#getHelpLine()
+	 * @see com.sangupta.andruil.commands.base.AbstractAndruilCommand#getHelpLine()
 	 */
 	@Override
 	public String getHelpLine() {

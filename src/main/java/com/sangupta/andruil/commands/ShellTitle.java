@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands;
 
-import com.sangupta.andruil.commands.base.AbstractCommand;
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
  * Change the title of the shell window.
@@ -29,7 +29,7 @@ import com.sangupta.andruil.commands.base.AbstractCommand;
  * @author sangupta
  *
  */
-public class ShellTitle extends AbstractCommand {
+public class ShellTitle extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {
