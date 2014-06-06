@@ -56,11 +56,16 @@ public class TextColor extends AbstractAndruilCommand {
 		
 		String str = arguments[0];
 		
-		if(str.length() == 1) {
+		if(str.length() >= 1) {
 			fore = getColor(str.charAt(0));
 		}
 		if(str.length() > 1) {
 			back = getColor(str.charAt(1));
+		}
+		
+		if(fore.equals(back)) {
+			System.out.println("Foreground and background color cannot be the same!");
+			return;
 		}
 		
 		this.shellContext.getConsole().setColor(fore, back);
