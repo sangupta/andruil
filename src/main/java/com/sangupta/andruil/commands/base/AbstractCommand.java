@@ -28,6 +28,10 @@ import com.sangupta.husk.core.HuskShellContext;
 import com.sangupta.husk.core.HuskShellContextAware;
 
 /**
+ * A base abstract implementation of {@link HuskShellCommand} that also provides
+ * support for {@link HuskShellContextAware} by providing each command the necessary
+ * shell context.
+ * 
  * @author sangupta
  *
  */
