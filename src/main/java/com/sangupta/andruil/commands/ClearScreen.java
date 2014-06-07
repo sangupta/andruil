@@ -30,9 +30,15 @@ import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
  *
  */
 public class ClearScreen extends AbstractAndruilCommand {
-	
+
+	@Override
 	public String getName() {
 		return "cls";
+	}
+	
+	@Override
+	public String[] getNameAlias() {
+		return new String[] { "clear" };
 	}
 
 	@Override

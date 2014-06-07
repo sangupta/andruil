@@ -42,6 +42,11 @@ public abstract class AbstractAndruilCommand implements HuskShellCommand, HuskSh
 	 */
 	protected HuskShellContext shellContext;
 	
+	@Override
+	public String[] getNameAlias() {
+		return null;
+	}
+	
 	/**
 	 * Return the current working directory of the shell.
 	 * 
