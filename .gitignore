@@ -23,6 +23,7 @@ docs/*
 
 # Java noise
 *.class
+dependency-reduced-pom.xml
 
 # Windows noise
 desktop.ini
