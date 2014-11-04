@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
-import com.sangupta.jerry.util.CryptoUtil;
+import com.sangupta.jerry.util.HashUtils;
 
 public class UniqueLines extends AbstractAndruilCommand {
 
@@ -57,7 +57,7 @@ public class UniqueLines extends AbstractAndruilCommand {
 		int duplicates = 0;
 		while((line = reader.readLine()) != null) {
 			lineNumber++;
-			String md5 = CryptoUtil.getMD5Hex(line);
+			String md5 = HashUtils.getMD5Hex(line);
 			if(hashes.contains(md5)) {
 				// System.out.println("Duplicate line found at line: " + lineNumber);
 				duplicates++;

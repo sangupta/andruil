@@ -21,8 +21,18 @@
 
 package com.sangupta.andruil;
 
+
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+import com.google.common.io.Resources;
 import com.sangupta.andruil.support.Environment;
+import com.sangupta.andruil.support.JavaLauncherCommand;
+import com.sangupta.andruil.support.JavaPackage;
 import com.sangupta.husk.HuskShell;
+import com.sangupta.jerry.util.AssertUtils;
+import com.sangupta.jerry.util.GsonUtils;
 
 /**
  * Main entry point for the shell.
@@ -61,6 +71,15 @@ public class Andruil {
 		huskShell.setHelpCommandNames("help");
 		huskShell.loadExternalCommands("com.sangupta.andruil.commands");
 		
+		// load all Java package commands
+		// find the file javapack.json and load it as well
+		JavaPackage[] packs = loadExternalJavaPackages();
+		if(AssertUtils.isNotEmpty(packs)) {
+			for(JavaPackage pack : packs) {
+				huskShell.addCommand(new JavaLauncherCommand(pack));
+			}
+		}
+		
 		// start the shell instance
 		try {
 			huskShell.start();
@@ -74,8 +93,28 @@ public class Andruil {
 		// when we are done
 		// make an exit
 		Environment.timeKeeper.close();
-		System.out.print("\n\n");
 		System.out.println(Environment.timeKeeper);
+	}
+
+	private static JavaPackage[] loadExternalJavaPackages() {
+		URL url = Resources.getResource("javapack.json");
+		if(url == null) {
+			return null;
+		}
+		
+		String json;
+		try {
+			json = Resources.toString(url, Charset.defaultCharset());
+		} catch (IOException e) {
+			// TODO: log this
+			return null;
+		}
+
+		if(AssertUtils.isEmpty(json)) {
+			return null;
+		}
+		
+		return GsonUtils.getGson().fromJson(json, JavaPackage[].class);
 	}
 
 }

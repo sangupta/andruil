@@ -1,0 +1,3 @@
+[
+{ "name" : "twitter", "description" : "Command-line power tool for twitter", "main" : "com.sangupta.twittercli.TwitterCLI" , "path" : "com.sangupta:twittercli:0.0.1-SNAPSHOT" }
+]
