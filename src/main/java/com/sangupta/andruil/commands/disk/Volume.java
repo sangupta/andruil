@@ -21,7 +21,7 @@
 
 package com.sangupta.andruil.commands.disk;
 
-import java.io.File;
+import javax.swing.filechooser.FileSystemView;
 
 import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
@@ -49,9 +49,8 @@ public class Volume extends AbstractAndruilCommand {
 
 	@Override
 	public void execute(String[] args) {
-		File file = new File("c:").getAbsoluteFile();
-		System.out.println(file.getName());
-		System.out.println(file.getAbsolutePath());
+		String name = FileSystemView.getFileSystemView().getSystemDisplayName(this.shellContext.getCurrentDirectory());
+		System.out.println("Current volume name is " + name);
 	}
 	
 }
