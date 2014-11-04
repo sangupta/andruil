@@ -101,7 +101,7 @@ public class Andruil {
 		// create the context
 		// start the shell
 		// Create the shell instance
-		HuskShell huskShell = new HuskShell(options.numRows, options.numColumns);
+		HuskShell huskShell = new HuskShell(options.consoleType, options.numRows, options.numColumns);
 		
 		AndruilPromptProvider promptProvider = new AndruilPromptProvider(huskShell.getCurrentShellContext());
 		
