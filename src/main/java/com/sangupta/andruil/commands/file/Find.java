@@ -1,7 +1,7 @@
 /**
  *
  * andruil - Java command line shell
- * Copyright (c) 2012, Sandeep Gupta
+ * Copyright (c) 2012-2014, Sandeep Gupta
  * 
  * http://www.sangupta/projects/andruil
  * 
@@ -24,6 +24,8 @@ package com.sangupta.andruil.commands.file;
 import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
+ * Find text in a set of files
+ * 
  * @author sangupta
  *
  */

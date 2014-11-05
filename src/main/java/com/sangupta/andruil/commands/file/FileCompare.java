@@ -1,7 +1,7 @@
 /**
  *
  * andruil - Java command line shell
- * Copyright (c) 2012, Sandeep Gupta
+ * Copyright (c) 2012-2014, Sandeep Gupta
  * 
  * http://www.sangupta/projects/andruil
  * 
@@ -30,6 +30,8 @@ import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 import com.sangupta.andruil.constants.WindowsErrorMessages;
 
 /**
+ * Compare two files in binary mode
+ * 
  * @author sangupta
  *
  */

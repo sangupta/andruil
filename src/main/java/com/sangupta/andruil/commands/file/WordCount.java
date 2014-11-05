@@ -1,7 +1,7 @@
 /**
  *
  * andruil - Java command line shell
- * Copyright (c) 2012, Sandeep Gupta
+ * Copyright (c) 2012-2014, Sandeep Gupta
  * 
  * http://www.sangupta/projects/andruil
  * 
@@ -29,6 +29,8 @@ import java.io.IOException;
 import com.sangupta.andruil.commands.base.AbstractMultiFileCommand;
 
 /**
+ * Display word count stats for a given file
+ * 
  * @author sangupta
  *
  */

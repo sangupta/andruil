@@ -1,7 +1,7 @@
 /**
  *
  * andruil - Java command line shell
- * Copyright (c) 2012, Sandeep Gupta
+ * Copyright (c) 2012-2014, Sandeep Gupta
  * 
  * http://www.sangupta/projects/andruil
  * 
