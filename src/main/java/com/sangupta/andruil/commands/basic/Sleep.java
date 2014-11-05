@@ -65,7 +65,6 @@ public class Sleep extends AbstractAndruilCommand {
 			Thread.sleep(time * 1000);
 		} catch (InterruptedException e) {
 			// eat up
-			// TODO: need to think of it
 		}
 	}
 
