@@ -19,7 +19,7 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.shell;
 
 import java.awt.Color;
 

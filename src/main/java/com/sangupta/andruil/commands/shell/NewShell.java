@@ -1,4 +1,4 @@
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.shell;
 
 import java.io.File;
 import java.io.IOException;

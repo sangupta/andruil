@@ -19,36 +19,36 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.shell;
 
 import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
 
 /**
- * Clear the entire screen.
+ * Modify the prompt style for the command line
  * 
  * @author sangupta
  *
  */
-public class ClearScreen extends AbstractAndruilCommand {
+public class Prompt extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {
-		return "cls";
-	}
-	
-	@Override
-	public String[] getNameAlias() {
-		return new String[] { "clear" };
-	}
-
-	@Override
-	public void execute(String[] args) {
-		this.shellContext.getConsole().clearScreen();
+		return "prompt";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Clear the console";
+		return "Change prompt format";
+	}
+
+	@Override
+	public void execute(String[] arguments) {
+		if(arguments.length != 1) {
+			System.out.println("Usage: $ prompt <format>");
+			return;
+		}
+		
+		this.shellContext.getConsole().setConsoleProperty("prompt.style", arguments[0]);
 	}
 
 }

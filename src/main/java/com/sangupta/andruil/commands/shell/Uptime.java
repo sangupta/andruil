@@ -19,45 +19,31 @@
  * 
  */
 
-package com.sangupta.andruil.commands;
+package com.sangupta.andruil.commands.shell;
 
 import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
+import com.sangupta.andruil.support.Environment;
 
 /**
- * Change the title of the shell window.
  * 
  * @author sangupta
  *
  */
-public class ShellTitle extends AbstractAndruilCommand {
+public class Uptime extends AbstractAndruilCommand {
 
 	@Override
 	public String getName() {
-		return "title";
+		return "uptime";
 	}
 
 	@Override
 	public String getHelpLine() {
-		return "Change the title of the shell window";
+		return "Show the system uptime and shell uptime";
 	}
 
 	@Override
 	public void execute(String[] arguments) {
-		if(arguments.length == 0) {
-			return;
-		}
-		
-		if(arguments.length == 1) {
-			this.shellContext.getConsole().setWindowTitle(arguments[0]);
-		}
-		
-		StringBuilder builder = new StringBuilder();
-		for(String arg : arguments) {
-			builder.append(arg);
-			builder.append(' ');
-		}
-		
-		this.shellContext.getConsole().setWindowTitle(builder.toString().trim());
+		System.out.println("Andruil has been up for " + Environment.timeKeeper.uptime());
 	}
 
 }
