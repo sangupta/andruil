@@ -7,6 +7,11 @@ Andruil aims to be the powerful shell for developers, geeks and power-users.
 The project is still under development is not tested. If
 you wish to contribute to the project, view the CONTRIBUTING file in the root of the repository.
 
+Screenshot
+----------
+
+![Andruil Screenshot](https://raw.githubusercontent.com/sangupta/andruil/master/docs/Andruil-Screenshot.png)
+
 Versioning
 ----------
 
