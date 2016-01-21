@@ -19,31 +19,32 @@
  * 
  */
 
-package com.sangupta.andruil.support;
+package com.sangupta.andruil.store;
 
-public class JavaPackage {
+import com.sangupta.andruil.commands.base.AbstractAndruilCommand;
+
+/**
+ * Provides functionality to work with a data-store and helps
+ * various commands to store command specific data.
+ * 
+ * @author sangupta
+ *
+ */
+public class AndruilStore {
 	
-	public String name;
-	
-	public String description;
-	
-	public String main;
-	
-	public String path;
-	
-	public JavaPackage() {
-		
+	/**
+	 * Store the given key-value pair for the command in the data-store.
+	 * 
+	 * @param command
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public static boolean store(AbstractAndruilCommand command, String key, String value) {
+		return false;
 	}
 	
-	public JavaPackage(String name, String description, String main) {
-		this(name, description, main, null);
+	public static String value(AbstractAndruilCommand command, String key) {
+		return null;
 	}
-	
-	public JavaPackage(String name, String description, String main, String path) {
-		this.name = name;
-		this.description = description;
-		this.main = main;
-		this.path = path;
-	}
-	
 }

@@ -22,26 +22,31 @@
 package com.sangupta.andruil;
 
 
-import io.airlift.command.Cli;
-import io.airlift.command.Command;
-import io.airlift.command.Help;
-import io.airlift.command.Option;
-import io.airlift.command.OptionType;
-import io.airlift.command.ParseArgumentsUnexpectedException;
-import io.airlift.command.Cli.CliBuilder;
-
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Set;
+
+import org.reflections.Reflections;
 
 import com.google.common.io.Resources;
 import com.sangupta.andruil.support.Environment;
 import com.sangupta.andruil.support.JavaLauncherCommand;
 import com.sangupta.andruil.support.JavaPackage;
+import com.sangupta.clitools.CliTool;
 import com.sangupta.consoles.ConsoleType;
 import com.sangupta.husk.HuskShell;
 import com.sangupta.jerry.util.AssertUtils;
 import com.sangupta.jerry.util.GsonUtils;
+
+import io.airlift.airline.Cli;
+import io.airlift.airline.Cli.CliBuilder;
+import io.airlift.airline.Command;
+import io.airlift.airline.Help;
+import io.airlift.airline.Option;
+import io.airlift.airline.OptionType;
+import io.airlift.airline.ParseArgumentsUnexpectedException;
 
 /**
  * Main entry point for the shell.
@@ -114,6 +119,9 @@ public class Andruil {
 		huskShell.setHelpCommandNames("help");
 		huskShell.loadExternalCommands("com.sangupta.andruil.commands");
 		
+		// load all commands from clitools project
+		loadCommandsFromCliTools(huskShell);
+		
 		// load all Java package commands
 		// find the file javapack.json and load it as well
 		JavaPackage[] packs = loadExternalJavaPackages();
@@ -124,19 +132,50 @@ public class Andruil {
 		}
 		
 		// start the shell instance
+		Throwable throwable = null;
 		try {
 			huskShell.start();
 		} catch(Throwable t) {
-			t.printStackTrace();
+			throwable = t;
 		}
 		
 		// stop and destroy all resources associated with the shell
 		huskShell.stop();
 		
+		if(throwable != null) {
+			throwable.printStackTrace();
+		}
+		
 		// when we are done
 		// make an exit
 		Environment.timeKeeper.close();
 		System.out.println(Environment.timeKeeper);
+	}
+
+	
+	/**
+	 * Load commands from the clitools project
+	 * 
+	 * @param huskShell
+	 */
+	private static void loadCommandsFromCliTools(HuskShell huskShell) {
+		Reflections reflections = new Reflections("com.sangupta.clitools");
+		Set<Class<? extends CliTool>> commands = reflections.getSubTypesOf(CliTool.class);
+		
+		if(AssertUtils.isNotEmpty(commands)) {
+			for(Class<? extends CliTool> clazz : commands) {
+				if(Modifier.isAbstract(clazz.getModifiers())) {
+					// no need to instantiate abstract classes
+					continue;
+				}
+
+				Command com = clazz.getAnnotation(Command.class);
+				if(com != null) {
+					JavaPackage javaPackage = new JavaPackage(com.name(), com.description(), clazz.getName());
+					huskShell.addCommand(new JavaLauncherCommand(javaPackage));
+				}
+			}
+		}		
 	}
 
 	/**
